@@ -1,6 +1,6 @@
 {
   "name": "ccin2p3-patterndb",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "author": "ccin2p3",
   "summary": "Puppet module for patterndb (Syslog-ng)",
   "license": "CECILL-B",
@@ -45,7 +45,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">=4.9.0 <6.0.0"
+      "version_requirement": ">=4.9.0 <7.0.0"
     }
   ],
   "description": "Module for managing patterndb (syslog-ng) configuration files on Linux",
