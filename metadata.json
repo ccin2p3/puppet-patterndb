@@ -45,7 +45,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">=4.9.0 <6.0.0"
+      "version_requirement": ">= 4.9.0 < 8.0.0"
     }
   ],
   "description": "Module for managing patterndb (syslog-ng) configuration files on Linux",
