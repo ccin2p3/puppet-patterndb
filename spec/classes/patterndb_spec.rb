@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'patterndb', type: 'class' do
@@ -8,6 +10,7 @@ describe 'patterndb', type: 'class' do
       end
 
       it { is_expected.to compile.with_all_deps }
+
       case facts[:osfamily]
       when 'Debian'
         it { is_expected.to contain_package('syslog-ng-core') }
@@ -15,6 +18,7 @@ describe 'patterndb', type: 'class' do
         it { is_expected.to contain_package('syslog-ng') }
       end
     end
+
     context "#{os} OS without managing package" do
       let :facts do
         facts
@@ -38,6 +42,7 @@ describe 'patterndb', type: 'class' do
 
     it { is_expected.to raise_error(Puppet::Error) }
   end
+
   context 'Any OS with a package name' do
     let :params do
       { package_name: 'othersyslogngpackagename' }

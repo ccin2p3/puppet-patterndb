@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Puppet::Parser::Functions
   newfunction(:patterndb_simple_action) do |args|
     id = 0
@@ -5,6 +7,7 @@ module Puppet::Parser::Functions
     rule_id = args[1]
     order = args[2]
     return if actions.empty?
+
     actions.each do |action|
       action_id = "#{rule_id}-#{id}"
       action['_embedded'] = true

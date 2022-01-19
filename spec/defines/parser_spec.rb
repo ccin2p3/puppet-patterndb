@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'patterndb::parser', type: 'define' do
@@ -15,12 +17,14 @@ describe 'patterndb::parser', type: 'define' do
       context 'Catchall' do
         it { is_expected.to contain_class('Patterndb') }
         it { is_expected.to contain_exec('patterndb::merge::default') }
+
         it {
           is_expected.to contain_file('patterndb::file::default').with(
-            'ensure' => 'present',
+            'ensure' => 'present'
           ).that_notifies('Exec[patterndb::merge::default]')
         }
       end
+
       context 'Default values (no parameters)' do
         let :params do
           {
@@ -30,23 +34,25 @@ describe 'patterndb::parser', type: 'define' do
 
         it {
           is_expected.to contain_exec('patterndb::test::default').with(
-            'command' => %r{patterndb/default\.xml $}m,
+            'command' => %r{patterndb/default\.xml $}m
           )
         }
       end
+
       context 'With optional syslog-ng module' do
         let :params do
           {
-            syslogng_modules: ['foo', 'bar'],
+            syslogng_modules: %w[foo bar],
           }
         end
 
         it {
           is_expected.to contain_exec('patterndb::test::default').with(
-            'command' => %r{patterndb/default\.xml --module=foo --module=bar$}m,
+            'command' => %r{patterndb/default\.xml --module=foo --module=bar$}m
           )
         }
       end
+
       context 'with two patterndbs' do
         let :pre_condition do
           'patterndb::parser { "stage1": }'
@@ -54,15 +60,17 @@ describe 'patterndb::parser', type: 'define' do
 
         it {
           is_expected.to contain_exec('patterndb::test::default').with(
-            'command' => %r{patterndb/default\.xml $}m,
+            'command' => %r{patterndb/default\.xml $}m
           )
         }
+
         it {
           is_expected.to contain_exec('patterndb::test::stage1').with(
-            'command' => %r{patterndb/stage1\.xml $}m,
+            'command' => %r{patterndb/stage1\.xml $}m
           )
         }
       end
+
       context 'With syslog-ng module in class' do
         let :pre_condition do
           ['class { "patterndb": syslogng_modules => [ "foo","bar"] }',
@@ -71,10 +79,11 @@ describe 'patterndb::parser', type: 'define' do
 
         it {
           is_expected.to contain_exec('patterndb::test::default').with(
-            'command' => %r{patterndb/default\.xml --module=foo --module=bar$}m,
+            'command' => %r{patterndb/default\.xml --module=foo --module=bar$}m
           )
         }
       end
+
       context 'With empty syslog-ng module list' do
         let :pre_condition do
           'class { "patterndb": syslogng_modules => [] }'
@@ -82,10 +91,11 @@ describe 'patterndb::parser', type: 'define' do
 
         it {
           is_expected.to contain_exec('patterndb::test::default').with(
-            'command' => %r{patterndb\/default\.xml $}m,
+            'command' => %r{patterndb/default\.xml $}m
           )
         }
       end
+
       context 'Without test_before_deploy' do
         let :params do
           {
@@ -95,6 +105,7 @@ describe 'patterndb::parser', type: 'define' do
 
         it { is_expected.to contain_exec('patterndb::merge::default').that_notifies('Exec[patterndb::deploy::default]') }
       end
+
       context 'With test_before_deploy' do
         let :params do
           {
