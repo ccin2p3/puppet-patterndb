@@ -2,7 +2,7 @@
 
 * reduce number of fragments by looping in templates instead
 * fix bug when action is defined for a rule with order: concat fragments get mixed up
-* empty actions sections do not validate #3 
+* empty actions sections do not validate #3
 * handle examples using concat so we can use string2array
 * escape htmlentities in patterns and test messages
   - just added horrible handling of <>

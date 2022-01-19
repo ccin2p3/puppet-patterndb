@@ -97,7 +97,7 @@ patterndb::parser { 'my_parser': }
 patterndb::simple::ruleset { 'myservice':
   parser   => 'my_parser',
   patterns => [ 'myservice-foo', 'myservice-bar' ],
-  rules    => [ 
+  rules    => [
     {
     	id => 'myservice-alert',
     	patterns => [ 'ALERT: foo = @NUMBER:foo@, bar = @FLOAT:bar@' ],
@@ -486,7 +486,7 @@ patterndb::simple::rule { 'd5ebb93c-909c-45a9-8ca7-a8f13de465cd':
 ### Defined Type: patterndb::simple::example
 
 Defined type describing sample messages in a [*rule*](#defined-type-patterndbsimplerule). You should not define this resource outside of a `patterndb::simple::rule`, as it will be created for you by the latter.
- 
+
 #### Mandatory Parameters
 
 * `$program` The `PROGRAM` *pattern* of the test message, *e.g.* `'sshd'`
@@ -509,7 +509,7 @@ See the paragraph [13.5.3](http://www.balabit.com/sites/default/files/documents/
 
 #### Optional Parameters
 
-* `$trigger` Specifies when the *action* is executed. The *trigger* attribute has the following possible values: `match` or `timeout`. 
+* `$trigger` Specifies when the *action* is executed. The *trigger* attribute has the following possible values: `match` or `timeout`.
 * `$rate` Specifies maximum how many messages should be generated in the specified time period in the following format: messages/second, *e.g.* `1/60`
 * `$condition` The *action* is performed only if the message matches the *filter*
 
@@ -566,9 +566,9 @@ And you should be okay
 
 There are no breaking changes but the fact that the module now requires *puppetlabs-concat*.
 This dependency was required for the separation of *rules* and *rulesets*.
- 
+
 ## Development
- 
+
 ### Testing
 
 * Smoke tests: run `./smoke/test` from the root directory
