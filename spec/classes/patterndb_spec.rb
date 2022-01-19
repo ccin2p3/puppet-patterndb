@@ -27,6 +27,8 @@ describe 'patterndb', type: 'class' do
         { manage_package: false }
       end
 
+      it { is_expected.to compile.with_all_deps }
+
       case facts[:osfamily]
       when 'Debian'
         it { is_expected.not_to contain_package('syslog-ng-core') }
