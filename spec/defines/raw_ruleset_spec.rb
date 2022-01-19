@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'patterndb::raw::ruleset' do
@@ -21,6 +23,7 @@ describe 'patterndb::raw::ruleset' do
 
         it { expect { is_expected.to compile }.to raise_error(%r{source}m) }
       end
+
       context 'Raw ruleset with only source' do
         let :params do
           {
@@ -32,6 +35,7 @@ describe 'patterndb::raw::ruleset' do
           is_expected.to contain_file('BASEDIR/etc/syslog-ng/patterndb.d/default/myrawruleset.pdb')
         }
       end
+
       context 'Raw rulesets with directory' do
         let :params do
           {
@@ -42,7 +46,7 @@ describe 'patterndb::raw::ruleset' do
 
         it {
           is_expected.to contain_file('BASEDIR/etc/syslog-ng/patterndb.d/default/myrawruleset').with(
-            ensure: 'directory',
+            ensure: 'directory'
           )
         }
       end

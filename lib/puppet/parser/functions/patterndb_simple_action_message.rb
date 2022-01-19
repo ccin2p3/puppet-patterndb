@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Puppet::Parser::Functions
   newfunction(:patterndb_simple_action_message) do |args|
     message = args[0]
