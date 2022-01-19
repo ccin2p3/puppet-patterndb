@@ -1,7 +1,7 @@
 #
 class { 'patterndb':
   manage_package => false,
-  base_dir       => '/tmp/'
+  base_dir       => '/tmp/',
 }
 
 patterndb::simple::ruleset { 'plop':
@@ -11,20 +11,20 @@ patterndb::simple::ruleset { 'plop':
   rules    => [
     {
       id       => 'plop',
-      patterns => [ 'hello' ],
+      patterns => ['hello'],
       values   => {
-        'plop' => 'ploup'
+        'plop' => 'ploup',
       },
     },{
       id       => 'plop2',
       patterns => 'hollo',
     }
-  ]
+  ],
 }
 
 patterndb::simple::ruleset { 'a':
   id       => 'a',
-  patterns => [ 'a' ],
+  patterns => ['a'],
   pubdate  => '1985-01-01',
   rules    => {
     id        => 'b',
@@ -35,11 +35,11 @@ patterndb::simple::ruleset { 'a':
         program      => 'a',
         test_message => 'match me dude',
         test_values  => {
-          'this' => 'me'
+          'this' => 'me',
         }
-      }
-    ]
-  }
+      },
+    ],
+  },
 }
 
 patterndb::simple::rule { 'rule-a':
@@ -49,7 +49,6 @@ patterndb::simple::rule { 'rule-a':
     {
       program      => 'a',
       test_message => 'please match me',
-    }
-  ]
+    },
+  ],
 }
-

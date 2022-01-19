@@ -2,12 +2,12 @@
 class { 'patterndb':
   manage_package     => false,
   base_dir           => '/tmp/',
-  syslogng_modules   => [ 'pdbtool_test_would_fail_with_this_module' ],
-  test_before_deploy => false
+  syslogng_modules   => ['pdbtool_test_would_fail_with_this_module'],
+  test_before_deploy => false,
 }
 
 patterndb::parser { 'default':
-  test_before_deploy => false
+  test_before_deploy => false,
 }
 
 patterndb::simple::ruleset { 'someotherprogram':
@@ -18,9 +18,8 @@ patterndb::simple::ruleset { 'someotherprogram':
     {
       id        => 'bd61010f-b339-9306-8ad5-4eb9764116b2',
       provider  => 'me',
-      patterns  => [ 'DHCPACK from @IPv4::@' ],
+      patterns  => ['DHCPACK from @IPv4::@'],
       ruleclass => 'system',
     },
-  ]
+  ],
 }
-

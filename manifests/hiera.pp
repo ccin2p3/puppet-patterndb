@@ -1,8 +1,7 @@
 #
 class patterndb::hiera (
   $prefix = 'patterndb'
-)
-{
+) {
   create_resources(
     'patterndb::parser',
     hiera_hash("${prefix}::parser", {})

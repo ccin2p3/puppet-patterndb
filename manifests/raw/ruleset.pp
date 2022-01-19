@@ -6,9 +6,8 @@ define patterndb::raw::ruleset (
   $purge = true,
   $sourceselect = 'all',
   $parser = 'default',
-  $ignore = [ '.svn', '.git' ],
-)
-{
+  $ignore = ['.svn', '.git'],
+) {
   validate_string($source)
   validate_string($parser)
   validate_string($ensure)
@@ -21,8 +20,8 @@ define patterndb::raw::ruleset (
 
   if ! defined(Patterndb::Parser[$parser]) {
     patterndb::parser { $parser:
-      test_before_deploy => $::patterndb::test_before_deploy,
-      syslogng_modules   => $::patterndb::syslogng_modules,
+      test_before_deploy => $patterndb::test_before_deploy,
+      syslogng_modules   => $patterndb::syslogng_modules,
     }
   }
 
@@ -35,14 +34,14 @@ define patterndb::raw::ruleset (
       source       => $source,
       sourceselect => $sourceselect,
       ignore       => $ignore,
-      notify       => Exec["patterndb::merge::${parser}"]
+      notify       => Exec["patterndb::merge::${parser}"],
     }
   } else {
     file { "${patterndb::pdb_dir}/${parser}/${name}.pdb":
       ensure => $ensure,
       mode   => '0644',
       source => $source,
-      notify => Exec["patterndb::merge::${parser}"]
+      notify => Exec["patterndb::merge::${parser}"],
     }
   }
 }

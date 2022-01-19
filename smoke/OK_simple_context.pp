@@ -1,7 +1,7 @@
 #
 class { 'patterndb':
   manage_package => false,
-  base_dir       => '/tmp/'
+  base_dir       => '/tmp/',
 }
 
 patterndb::simple::ruleset { 'dhclient':
@@ -12,19 +12,19 @@ patterndb::simple::ruleset { 'dhclient':
     {
       id              => 'bd63010f-b339-4106-8ad3-4eb9764116b2',
       provider        => 'remi.ferrand@cc.in2p3.fr',
-      patterns        => [ 'DHCPACK from @IPv4::@' ],
+      patterns        => ['DHCPACK from @IPv4::@'],
       examples        => [
         {
           'program'      => 'dhclient',
           'test_message' => 'DHCPACK from 172.17.0.1 (xid=0x245abdb1)'
-        }
+        },
       ],
       context_id      => 'plop',
       context_timeout => '34',
       context_scope   => 'program',
-      tags            => [ 'tagv1' ],
+      tags            => ['tagv1'],
       ruleclass       => 'system',
-      urls            => [ 'http://localhost/doc' ]
+      urls            => ['http://localhost/doc']
     },
     {
       id        => '89e858cd-4bf6-4c1d-a092-41af271ef851',
@@ -32,7 +32,7 @@ patterndb::simple::ruleset { 'dhclient':
       provider  => 'me',
       patterns  => [
         'match this @ANYSTRING@',
-        'and that @ANYSTRING@'
+        'and that @ANYSTRING@',
       ],
       examples  => [
         {
@@ -42,30 +42,30 @@ patterndb::simple::ruleset { 'dhclient':
         {
           program      => 'dhcpclient',
           test_message => 'and that too'
-        }
+        },
       ],
     }
-  ]
+  ],
 }
 
 patterndb::simple::ruleset { 'plop':
   id       => 'plop',
-  patterns => [ 'plop' ],
+  patterns => ['plop'],
   pubdate  => '1970-01-01',
   rules    => [
     {
       id       => 'plop',
-      patterns => [ 'hello' ],
+      patterns => ['hello'],
       values   => {
-        'plop' => 'ploup'
+        'plop' => 'ploup',
       },
     }
-  ]
+  ],
 }
 
 patterndb::simple::ruleset { 'a':
   id       => 'a',
-  patterns => [ 'a' ],
+  patterns => ['a'],
   pubdate  => '1985-01-01',
   rules    => [
     {
@@ -77,12 +77,10 @@ patterndb::simple::ruleset { 'a':
           program      => 'a',
           test_message => 'match me dude',
           test_values  => {
-            'this' => 'me'
+            'this' => 'me',
           }
-        }
+        },
       ]
     }
-  ]
+  ],
 }
-
-

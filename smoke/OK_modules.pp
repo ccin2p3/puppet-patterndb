@@ -5,7 +5,7 @@ Exec {
 class { 'patterndb':
   manage_package   => false,
   base_dir         => '/tmp/',
-  syslogng_modules => [ 'basicfuncs' ]
+  syslogng_modules => ['basicfuncs'],
 }
 
 patterndb::simple::ruleset { 'someprogram':
@@ -16,9 +16,8 @@ patterndb::simple::ruleset { 'someprogram':
     {
       id        => 'bd61010f-b339-4106-8ad3-4eb9764116b2',
       provider  => 'me',
-      patterns  => [ 'DHCPACK from @IPv4::@' ],
+      patterns  => ['DHCPACK from @IPv4::@'],
       ruleclass => 'system',
     },
-  ]
+  ],
 }
-
