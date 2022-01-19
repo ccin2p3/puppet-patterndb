@@ -16,7 +16,7 @@ lookup(
 ).each |$reference, $params| {
   notify { "ruleset ${reference}": }
   patterndb::simple::ruleset { $reference:
-    * => $params
+    * => $params,
   }
 }
 lookup(
@@ -27,7 +27,7 @@ lookup(
 ).each |$reference, $params| {
   notify { "rule ${reference}": }
   patterndb::simple::rule { $reference:
-    * => $params
+    * => $params,
   }
 }
 lookup(
@@ -38,7 +38,6 @@ lookup(
 ).each |$reference, $params| {
   notify { "action ${reference}": }
   patterndb::simple::action { $reference:
-    * => $params
+    * => $params,
   }
 }
-

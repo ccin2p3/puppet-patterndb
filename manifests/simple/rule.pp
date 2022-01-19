@@ -17,7 +17,7 @@ define patterndb::simple::rule (
   $examples = [],
   $tags = [],
   $values = {},
-){
+) {
   validate_string($id)
   validate_string($provider)
   validate_string($ruleclass)
@@ -56,4 +56,3 @@ define patterndb::simple::rule (
     order   => "002-${order}-${title}-zzz",
   }
 }
-

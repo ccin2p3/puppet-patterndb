@@ -5,13 +5,13 @@ class { 'patterndb':
   syslogng_modules => [],
 }
 
-Patterndb::Simple::Rule  {
-  provider => 'blah'
+Patterndb::Simple::Rule {
+  provider => 'blah',
 }
 
 patterndb::simple::ruleset { 'a':
   id       => 'a',
-  patterns => [ 'a' ],
+  patterns => ['a'],
   pubdate  => '1985-01-01',
   rules    => [
     {
@@ -27,15 +27,14 @@ patterndb::simple::ruleset { 'a':
           program      => 'a',
           test_message => 'ma<>tch me dude',
           test_values  => {
-            'this' => 'me'
+            'this' => 'me',
           }
-        }
+        },
       ]
     }
-  ]
+  ],
 }
 
 create_resources('patterndb::simple::ruleset', hiera('patterndb::simple::ruleset',{},'patterndb'))
 create_resources('patterndb::simple::rule', hiera('patterndb::simple::rule',{},'patterndb'))
 #create_resources('patterndb::simple::action', hiera('patterndb::simple::action',{},'patterndb'))
-

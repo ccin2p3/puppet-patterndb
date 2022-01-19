@@ -7,4 +7,3 @@ class { 'patterndb':
 }
 
 patterndb::parser { 'default': }
-

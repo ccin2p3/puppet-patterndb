@@ -10,7 +10,6 @@ define patterndb::simple::ruleset (
   $url            = undef,
   $order = '',
 ) {
-
   if ! defined(Class['Patterndb']) {
     include patterndb
   }
@@ -34,8 +33,8 @@ define patterndb::simple::ruleset (
 
   if ! defined(Patterndb::Parser[$parser]) {
     patterndb::parser { $parser:
-      test_before_deploy => $::patterndb::test_before_deploy,
-      syslogng_modules   => $::patterndb::syslogng_modules,
+      test_before_deploy => $patterndb::test_before_deploy,
+      syslogng_modules   => $patterndb::syslogng_modules,
     }
   }
 
@@ -49,12 +48,12 @@ define patterndb::simple::ruleset (
   concat::fragment { "patterndb_simple_ruleset-${title}-header":
     target  => "patterndb_simple_ruleset-${title}",
     content => template('patterndb/ruleset-header.erb'),
-    order   => '001'
+    order   => '001',
   }
   concat::fragment { "patterndb_simple_ruleset-${title}-footer":
     target  => "patterndb_simple_ruleset-${title}",
     content => template('patterndb/ruleset-footer.erb'),
-    order   => 'zzz'
+    order   => 'zzz',
   }
 
   if (! empty($rules)) { # monolithic ruleset definition

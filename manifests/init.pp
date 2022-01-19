@@ -14,19 +14,19 @@ class patterndb (
     if is_string($package_name) {
       $real_package_name = $package_name
     } else {
-      case $::osfamily {
+      case $facts['os']['family'] {
         'RedHat': { $real_package_name = 'syslog-ng' }
         'Debian': { $real_package_name = 'syslog-ng-core' }
-        default: { fail("unsupported osfamily: ${::osfamily}") }
+        default: { fail("unsupported osfamily: ${facts['os']['family']}") }
       }
     }
     ensure_resource ( 'package', $real_package_name, { 'ensure' => 'installed' })
   }
-  ensure_resource ( 'file', $temp_dir, { ensure => directory } )
+  ensure_resource ( 'file', $temp_dir, { ensure => directory })
   if $_manage_top_dirs {
-    ensure_resource ( 'file', "${base_dir}/etc", { ensure => 'directory' } )
-    ensure_resource ( 'file', "${base_dir}/var", { ensure => 'directory' } )
-    ensure_resource ( 'file', "${base_dir}/var/lib", { ensure => 'directory' } )
+    ensure_resource ( 'file', "${base_dir}/etc", { ensure => 'directory' })
+    ensure_resource ( 'file', "${base_dir}/var", { ensure => 'directory' })
+    ensure_resource ( 'file', "${base_dir}/var/lib", { ensure => 'directory' })
   }
   ensure_resource (
     'file', "${base_dir}/etc/syslog-ng",
@@ -56,4 +56,3 @@ class patterndb (
     include patterndb::hiera
   }
 }
-

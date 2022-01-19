@@ -8,7 +8,7 @@ class { 'patterndb':
 
 patterndb::simple::ruleset { 'yum':
   id       => 'f2ff6bd5-749e-4c56-bbae-fcc3edc19897',
-  patterns => [ 'yum', 'yum-initupdate' ],
+  patterns => ['yum', 'yum-initupdate'],
   pubdate  => '2014-04-03',
   rules    => [
     {
@@ -24,7 +24,7 @@ patterndb::simple::ruleset { 'yum':
         # lint:endignore
 #
       ],
-      tags     => [ 'appacct' ],
+      tags     => ['appacct'],
       values   => {
 # the following removes the trailing dash
         'appacct.rsname' => '$(substr "${tmp.package_name}" "0" "-1")', # lint:ignore:single_quote_string_with_variables
@@ -81,7 +81,7 @@ patterndb::simple::ruleset { 'yum':
         # lint:endignore
 #
       ],
-      tags     => [ 'appacct' ],
+      tags     => ['appacct'],
       values   => {
         'appacct.rsname' => '$(substr "${tmp.package_name}" "0" "-1")', # lint:ignore:single_quote_string_with_variables
         'appacct.rstype' => 'update',
@@ -105,9 +105,9 @@ patterndb::simple::ruleset { 'yum':
       patterns => [
         'Erased: @ANYSTRING:appacct.rsname@',
       ],
-      tags     => [ 'appacct' ],
+      tags     => ['appacct'],
       values   => {
-        'appacct.rstype' => 'erase'
+        'appacct.rstype' => 'erase',
       },
       examples => [
         {
@@ -117,8 +117,8 @@ patterndb::simple::ruleset { 'yum':
             'appacct.rsname' => 'nagios-plugins-ups',
             'appacct.rstype' => 'erase',
           },
-        }
+        },
       ]
     }
-  ]
+  ],
 }

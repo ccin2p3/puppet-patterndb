@@ -2,7 +2,7 @@
 class { 'patterndb':
   manage_package   => false,
   base_dir         => '/tmp/',
-  syslogng_modules => [ 'tfgetent' ]
+  syslogng_modules => ['tfgetent'],
 }
 
 patterndb::simple::ruleset { 'getent':
@@ -14,7 +14,7 @@ patterndb::simple::ruleset { 'getent':
     {
       id        => 'bd61010f-bff9-4106-8ad3-4eb9764116b2',
       provider  => 'me',
-      patterns  => [ 'protocol: @NUMBER:proto_num@' ],
+      patterns  => ['protocol: @NUMBER:proto_num@'],
       ruleclass => 'system',
       values    => {
         'proto' => '$(getent protocols ${proto_num})' # lint:ignore:single_quote_string_with_variables
@@ -25,11 +25,10 @@ patterndb::simple::ruleset { 'getent':
           test_message => 'protocol: 6',
           test_values  => {
             'proto_num' => '6',
-            'proto'     => 'tcp'
+            'proto'     => 'tcp',
           }
-        }
+        },
       ]
     },
-  ]
+  ],
 }
-
