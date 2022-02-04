@@ -4,9 +4,9 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v3.1.0](https://github.com/ccin2p3/puppet-patterndb/tree/v3.1.0) (2022-02-02)
+## [v4.0.0](https://github.com/ccin2p3/puppet-patterndb/tree/v4.0.0) (2022-02-04)
 
-[Full Changelog](https://github.com/ccin2p3/puppet-patterndb/compare/v3.0.0...v3.1.0)
+[Full Changelog](https://github.com/ccin2p3/puppet-patterndb/compare/v3.0.0...v4.0.0)
 
 **Breaking changes:**
 
