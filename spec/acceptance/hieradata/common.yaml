@@ -13,12 +13,9 @@ patterndb::rule:
     - '@ESTRING:appacct.program:@[@NUMBER:appacct.pid@]: segfault at @ESTRING:: @ip @ESTRING:: @sp @ESTRING:: @@ESTRING:appacct.status: @@NUMBER:appacct.errno@ in @ESTRING:appacct.rsname:@@QSTRING::[]@'
     examples:
     - program: kernel
-      test_message: 'ipmi[371646]: segfault at 7fe368118000 ip 00007fe37f26465b sp
-        00007fe36e9a9818 error 4 in libc-2.17.so[7fe37f10f000+1c2000]'
+      test_message: 'ipmi[371646]: segfault at 7fe368118000 ip 00007fe37f26465b sp 00007fe36e9a9818 error 4 in libc-2.17.so[7fe37f10f000+1c2000]'
     - program: kernel
-      test_message: 'ipmi[424101]: segfault at 7fba900ed000 ip 00007fbaa437465f sp
-        00007fba96c2e818 error 4 in libc-2.17.so[7fbaa421f000+1c2000]'
+      test_message: 'ipmi[424101]: segfault at 7fba900ed000 ip 00007fbaa437465f sp 00007fba96c2e818 error 4 in libc-2.17.so[7fbaa421f000+1c2000]'
     - program: kernel
-      test_message: 'ipmi[28689]: segfault at 7f76400f6e78 ip 00007f7660f47d69 sp
-        00007f7653803818 error 4 in libc-2.17.so[7f7660df4000+1c2000]'
+      test_message: 'ipmi[28689]: segfault at 7f76400f6e78 ip 00007f7660f47d69 sp 00007f7653803818 error 4 in libc-2.17.so[7f7660df4000+1c2000]'
 
