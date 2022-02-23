@@ -1,6 +1,6 @@
 {
   "name": "ccin2p3-patterndb",
-  "version": "4.0.1",
+  "version": "4.0.2-rc0",
   "author": "ccin2p3",
   "summary": "Puppet module for patterndb (Syslog-ng)",
   "license": "CECILL-B",
