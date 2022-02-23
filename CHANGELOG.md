@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v4.0.1](https://github.com/ccin2p3/puppet-patterndb/tree/v4.0.1) (2022-02-23)
+
+[Full Changelog](https://github.com/ccin2p3/puppet-patterndb/compare/v4.0.0...v4.0.1)
+
+**Fixed bugs:**
+
+- Fix variable interpolation [\#20](https://github.com/ccin2p3/puppet-patterndb/pull/20) ([smortex](https://github.com/smortex))
+
 ## [v4.0.0](https://github.com/ccin2p3/puppet-patterndb/tree/v4.0.0) (2022-02-04)
 
 [Full Changelog](https://github.com/ccin2p3/puppet-patterndb/compare/v3.0.0...v4.0.0)
