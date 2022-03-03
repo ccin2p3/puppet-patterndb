@@ -16,8 +16,9 @@ define patterndb::parser (
     $modules = "--module=${tmp}"
   }
   ensure_resource('file', "${patterndb::pdb_dir}/${name}", {
-      'ensure'          => 'directory',
-      'purge'       => true,
+      'ensure'  => 'directory',
+      'purge'   => true,
+      'force'   => true,
       'recurse' => true,
   })
   ensure_resource ('file', "${patterndb::temp_dir}/patterndb", {

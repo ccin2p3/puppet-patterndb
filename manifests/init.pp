@@ -48,6 +48,7 @@ class patterndb (
   file { $pdb_dir:
     ensure  => directory,
     purge   => true,
+    force   => true,
     recurse => true,
     source  => 'puppet:///modules/patterndb/patterndb.d',
   }
