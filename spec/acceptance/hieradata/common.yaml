@@ -10,7 +10,7 @@ patterndb::rule:
     ruleset: kernel
     ruleclass: sequence
     patterns:
-    - '@ESTRING:appacct.program:@[@NUMBER:appacct.pid@]: segfault at @ESTRING:: @ip @ESTRING:: @sp @ESTRING:: @@ESTRING:appacct.status: @@NUMBER:appacct.errno@ in @ESTRING:appacct.rsname:@@QSTRING::[]@'
+    - '@ESTRING:appacct.program:[@@NUMBER:appacct.pid@]: segfault at @ESTRING:: @ip @ESTRING:: @sp @ESTRING:: @@ESTRING:appacct.status: @@NUMBER:appacct.errno@ in @ESTRING:appacct.rsname:[@@ESTRING::]@'
     examples:
     - program: kernel
       test_message: 'ipmi[371646]: segfault at 7fe368118000 ip 00007fe37f26465b sp 00007fe36e9a9818 error 4 in libc-2.17.so[7fe37f10f000+1c2000]'
