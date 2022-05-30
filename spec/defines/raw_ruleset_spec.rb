@@ -46,7 +46,7 @@ describe 'patterndb::raw::ruleset' do
 
         it {
           is_expected.to contain_file('BASEDIR/etc/syslog-ng/patterndb.d/default/myrawruleset').with(
-            ensure: 'directory'
+            ensure: 'directory',
           )
         }
       end
