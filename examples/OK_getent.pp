@@ -24,7 +24,7 @@ patterndb::simple::ruleset { 'getent':
           program      => 'A',
           test_message => 'protocol: 6',
           test_values  => {
-            'proto_num' => '6',
+            'proto_num' => 6,
             'proto'     => 'tcp',
           }
         },
