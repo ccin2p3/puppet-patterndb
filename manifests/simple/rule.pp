@@ -14,14 +14,13 @@ define patterndb::simple::rule (
 # begin currently ignored
   Array $urls = [],
 # end currently ignored
-  Array $examples = [],
+  Array[Patterndb::Example] $examples = [],
   Array $tags = [],
   Hash $values = {},
 ) {
   $patterns_sanitized = htmlentities($patterns)
 
   # validate sample messages
-  patterndb_simple_example ($examples, $id)
   if (! $_embedded) { # we were defined outside the ruleset
     if (! defined(Patterndb::Simple::Ruleset[$ruleset])) {
       fail("Failed while trying to define rule `${title}` for undeclared ruleset `${ruleset}`")
