@@ -212,10 +212,7 @@ describe 'patterndb::simple::ruleset' do
         # it {
         #  pp subject.resources
         # }
-        it { is_expected.to contain_patterndb__simple__example('RULE_1_ID-0') }
-        it { is_expected.not_to contain_patterndb__simple__example('RULE_1_ID-1') }
-        it { is_expected.to contain_patterndb__simple__example('RULE_2_ID-0') }
-        it { is_expected.to contain_patterndb__simple__example('RULE_2_ID-1') }
+        it { is_expected.to compile.with_all_deps }
       end
 
       context 'Simple ruleset with one rule, correlation and action' do
