@@ -29,8 +29,10 @@ patterndb::simple::rule { 'x':
       program      => 'x',
       test_message => 'match something else like me dude',
       test_values  => {
-        'this' => 'me',
-      }
+        'this' => {
+          value => 'me',
+        },
+      },
     },
   ],
 }
@@ -44,8 +46,10 @@ patterndb::simple::rule { 'a':
       program      => 'a',
       test_message => 'match something else like me dude',
       test_values  => {
-        'this' => 'me',
-      }
+        'this' => {
+          value => 'me',
+        },
+      },
     },
   ],
 }
@@ -59,8 +63,10 @@ patterndb::simple::rule { 'b':
       program      => 'a',
       test_message => 'match me dude',
       test_values  => {
-        'this' => 'me',
-      }
+        'this' => {
+          value => 'me',
+        },
+      },
     },
   ],
 }
@@ -74,8 +80,10 @@ patterndb::simple::rule { 'c':
       program      => 'a',
       test_message => 'match even another me dude',
       test_values  => {
-        'this' => 'me',
-      }
+        'this' => {
+          value => 'me',
+        },
+      },
     },
   ],
 }

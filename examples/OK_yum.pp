@@ -36,34 +36,66 @@ patterndb::simple::ruleset { 'yum':
           program      => 'yum',
           test_message => 'Installed: 4:perl-Time-HiRes-1.9721-136.el6.x86_64',
           test_values  => {
-            'appacct.rsname'  => 'perl-Time-HiRes',
-            'appacct.epoch'   => '4',
-            'appacct.version' => '1.9721',
-            'appacct.release' => '136.el6',
-            'appacct.arch'    => 'x86_64',
-            'appacct.rstype'  => 'install',
+            'appacct.rsname'  => {
+              value => 'perl-Time-HiRes',
+            },
+            'appacct.epoch'   => {
+              value => '4',
+            },
+            'appacct.version' => {
+              value => '1.9721',
+            },
+            'appacct.release' => {
+              value => '136.el6',
+            },
+            'appacct.arch'    => {
+              value => 'x86_64',
+            },
+            'appacct.rstype'  => {
+              value => 'install',
+            },
           },
         },
         {
           program      => 'yum',
           test_message => 'Installed: token-forge-2-1.x86_64',
           test_values  => {
-            'appacct.rsname'  => 'token-forge',
-            'appacct.version' => '2',
-            'appacct.release' => '1',
-            'appacct.arch'    => 'x86_64',
-            'appacct.rstype'  => 'install',
+            'appacct.rsname'  => {
+              value => 'token-forge',
+            },
+            'appacct.version' => {
+              value => '2',
+            },
+            'appacct.release' => {
+              value => '1',
+            },
+            'appacct.arch'    => {
+              value => 'x86_64',
+            },
+            'appacct.rstype'  => {
+              value => 'install',
+            },
           },
         },
         {
           program      => 'yum',
           test_message => 'Installed: perl-Class-MakeMethods-1.01-5.el6.noarch',
           test_values  => {
-            'appacct.rsname'  => 'perl-Class-MakeMethods',
-            'appacct.version' => '1.01',
-            'appacct.release' => '5.el6',
-            'appacct.arch'    => 'noarch',
-            'appacct.rstype'  => 'install',
+            'appacct.rsname'  => {
+              value => 'perl-Class-MakeMethods',
+            },
+            'appacct.version' => {
+              value => '1.01',
+            },
+            'appacct.release' => {
+              value => '5.el6',
+            },
+            'appacct.arch'    => {
+              value => 'noarch',
+            },
+            'appacct.rstype'  => {
+              value => 'install',
+            },
           },
         },
       ],
@@ -91,11 +123,21 @@ patterndb::simple::ruleset { 'yum':
           program      => 'yum',
           test_message => 'Updated: python-boto-2.25.0-2.el6.noarch',
           test_values  => {
-            'appacct.rsname'  => 'python-boto',
-            'appacct.version' => '2.25.0',
-            'appacct.release' => '2.el6',
-            'appacct.arch'    => 'noarch',
-            'appacct.rstype'  => 'update',
+            'appacct.rsname'  => {
+              value => 'python-boto',
+            },
+            'appacct.version' => {
+              value => '2.25.0',
+            },
+            'appacct.release' => {
+              value => '2.el6',
+            },
+            'appacct.arch'    => {
+              value => 'noarch',
+            },
+            'appacct.rstype'  => {
+              value => 'update',
+            },
           },
         },
       ],
@@ -114,8 +156,12 @@ patterndb::simple::ruleset { 'yum':
           program      => 'yum',
           test_message => 'Erased: nagios-plugins-ups',
           test_values  => {
-            'appacct.rsname' => 'nagios-plugins-ups',
-            'appacct.rstype' => 'erase',
+            'appacct.rsname' => {
+              value => 'nagios-plugins-ups',
+            },
+            'appacct.rstype' => {
+              value => 'erase',
+            },
           },
         },
       ]

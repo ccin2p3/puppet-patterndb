@@ -232,8 +232,12 @@ describe 'patterndb::simple::ruleset' do
                     'test_message' => 'Simple ruleset with 2 rules and 1 example',
                     'program' => 'P1',
                     'test_values' => {
-                      'num_examples' => '1',
-                      'num_rules' => '2',
+                      'num_examples' => {
+                        'value' => '1',
+                      },
+                      'num_rules' => {
+                        'value' => '2',
+                      },
                     },
                   },
                 ],
@@ -247,14 +251,18 @@ describe 'patterndb::simple::ruleset' do
                     'test_message' => 'This is a simple rule',
                     'program' => 'P2',
                     'test_values' => {
-                      'type' => 'simple',
+                      'type' => {
+                        'value' => 'simple',
+                      },
                     },
                   },
                   {
                     'test_message' => 'This is a complicated rule',
                     'program' => 'P2',
                     'test_values' => {
-                      'type' => 'complicated',
+                      'type' => {
+                        'value' => 'complicated',
+                      },
                     },
                   },
                 ],

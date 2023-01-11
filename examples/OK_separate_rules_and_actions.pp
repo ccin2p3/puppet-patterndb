@@ -37,8 +37,10 @@ patterndb::simple::rule { 'rule-a':
       program      => 'a',
       test_message => 'match something else like me dude',
       test_values  => {
-        'this' => 'me',
-      }
+        'this' => {
+          value => 'me',
+        },
+      },
     },
   ],
   actions   => [
@@ -62,8 +64,10 @@ patterndb::simple::rule { 'rule-b':
       program      => 'a',
       test_message => 'match even something else like me dude',
       test_values  => {
-        'this' => 'me',
-      }
+        'this' => {
+          value => 'me',
+        },
+      },
     },
   ],
 }

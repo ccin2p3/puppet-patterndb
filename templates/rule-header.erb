@@ -36,7 +36,7 @@
 <% if example['test_values'] -%>
 						<test_values>
 <% Hash[example['test_values']].sort.each do |k,v| -%>
-							<test_value name='<%=k%>' type='<%= case v.class when Float then 'double' else v.class.name.downcase end %>'><%=scope.call_function('htmlentities', [v])%></test_value>
+							<test_value name='<%=k%>'<% if v['type'] %> type='<%= v['type'] %>'<% end %>><%=scope.call_function('htmlentities', [v['value']])%></test_value>
 <% end -%>
 						</test_values>
 <% end -%>
