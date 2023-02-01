@@ -8,8 +8,6 @@ define patterndb::simple::action (
   Boolean $_embedded = false,
   String[1] $rule_order = '00',
 ) {
-  # validate message
-  patterndb_simple_action_message ($message, $name)
   if (! $_embedded) { # we were defined outside the rule
     if (! defined(Patterndb::Simple::Rule[$rule])) {
       fail("Failed while trying to define action `${title}` for undeclared rule `${rule}`")

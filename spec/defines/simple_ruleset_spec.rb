@@ -291,7 +291,6 @@ describe 'patterndb::simple::ruleset' do
         }
 
         it { is_expected.to contain_patterndb__simple__action('RULE_ID-0') }
-        it { is_expected.to contain_patterndb__simple__action__message('RULE_ID-0') }
       end
 
       context 'Simple ruleset with order' do

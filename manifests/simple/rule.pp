@@ -20,7 +20,6 @@ define patterndb::simple::rule (
 ) {
   $patterns_sanitized = htmlentities($patterns)
 
-  # validate sample messages
   if (! $_embedded) { # we were defined outside the ruleset
     if (! defined(Patterndb::Simple::Ruleset[$ruleset])) {
       fail("Failed while trying to define rule `${title}` for undeclared ruleset `${ruleset}`")
