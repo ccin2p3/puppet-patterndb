@@ -1,6 +1,6 @@
 type Patterndb::Action = Struct[
   {
-    trigger   => Optional[String[1]],
+    trigger   => Optional[Enum['timeout', 'match']],
     rate      => Optional[String[1]],
     condition => Optional[String[1]],
     message   => Struct[

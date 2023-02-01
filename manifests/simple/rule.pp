@@ -8,7 +8,7 @@ define patterndb::simple::rule (
   Optional[String[1]] $context_id = undef,
   Boolean $_embedded = false,
   Optional[Integer] $context_timeout = undef,
-  Optional[String[1]] $context_scope = undef,
+  Optional[Patterndb::Context_scope] $context_scope = undef,
   String[1] $order = '00',
   Array $actions = [],
 # begin currently ignored
