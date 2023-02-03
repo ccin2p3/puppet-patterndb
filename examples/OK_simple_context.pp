@@ -20,7 +20,7 @@ patterndb::simple::ruleset { 'dhclient':
         },
       ],
       context_id      => 'plop',
-      context_timeout => '34',
+      context_timeout => 34,
       context_scope   => 'program',
       tags            => ['tagv1'],
       ruleclass       => 'system',
@@ -77,8 +77,10 @@ patterndb::simple::ruleset { 'a':
           program      => 'a',
           test_message => 'match me dude',
           test_values  => {
-            'this' => 'me',
-          }
+            'this' => {
+              value => 'me',
+            },
+          },
         },
       ]
     }

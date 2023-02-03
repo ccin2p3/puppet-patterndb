@@ -10,7 +10,7 @@
 <% end -%>
 			      class='<%= @ruleclass -%>'>
 				<patterns>
-<% @patterns_a.each do |pattern| -%>
+<% @patterns_sanitized.each do |pattern| -%>
 					<pattern><%= pattern -%></pattern>
 <% end -%>
 				</patterns>
@@ -23,20 +23,20 @@
 <% end -%>
 <% if ! @tags.empty? -%>
 				<tags>
-<% @tags_a.each do |tag| -%>
+<% @tags.each do |tag| -%>
 					<tag><%= tag -%></tag>
 <% end -%>
 				</tags>
 <% end -%>
 <% if ! @examples.empty? -%>
 				<examples>
-<% @examples_a.each do |example| -%>
+<% @examples.each do |example| -%>
 					<example>
 						<test_message program="<%= example['program'] -%>"><%= scope.call_function('htmlentities', [example['test_message']]) -%></test_message>
 <% if example['test_values'] -%>
 						<test_values>
 <% Hash[example['test_values']].sort.each do |k,v| -%>
-							<test_value name='<%=k%>'><%=scope.call_function('htmlentities', [v])%></test_value>
+							<test_value name='<%=k%>'<% if v['type'] %> type='<%= v['type'] %>'<% end %>><%=scope.call_function('htmlentities', [v['value']])%></test_value>
 <% end -%>
 						</test_values>
 <% end -%>

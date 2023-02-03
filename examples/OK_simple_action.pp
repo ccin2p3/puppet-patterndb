@@ -32,7 +32,7 @@ patterndb::simple::ruleset { 'dhclient':
         'and that @ANYSTRING@',
       ],
       context_id      => 'blah',
-      context_timeout => '10',
+      context_timeout => 10,
       examples        => [
         {
           test_message => 'match this thing',

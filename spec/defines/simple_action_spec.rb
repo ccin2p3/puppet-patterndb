@@ -26,13 +26,13 @@ describe 'patterndb::simple::action' do
           rules => [
             {
               id => "myembeddedrule",
-              patterns => "myembeddedpattern"
+              patterns => ["myembeddedpattern"],
             }
           ]
         }
         patterndb::simple::rule { "myrule":
           ruleset => "myruleset",
-          patterns => "mypattern",
+          patterns => ["mypattern"],
         }
         Exec { path => ["/bin","/usr/bin"] }'
       end

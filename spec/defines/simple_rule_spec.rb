@@ -61,7 +61,7 @@ describe 'patterndb::simple::rule' do
       context 'Simple rule with 1 string pattern and ruleset' do
         let :params do
           default_params.merge(
-            patterns: 'Time is an illusion. Lunchtime doubly so.',
+            patterns: ['Time is an illusion. Lunchtime doubly so.'],
             ruleset: 'myruleset',
           )
         end
@@ -70,7 +70,7 @@ describe 'patterndb::simple::rule' do
           is_expected.to contain_patterndb__simple__ruleset('myruleset')
           is_expected.to contain_patterndb__simple__rule('myrule').with(
             ruleset: 'myruleset',
-            patterns: 'Time is an illusion. Lunchtime doubly so.',
+            patterns: ['Time is an illusion. Lunchtime doubly so.'],
           )
         }
 
