@@ -1,0 +1,58 @@
+---
+syslog_ng_version: 3.37.1
+syslog_ng:
+  Available-Modules:
+  - add-contextual-data
+  - affile
+  - afprog
+  - afsocket
+  - afstomp
+  - afuser
+  - appmodel
+  - basicfuncs
+  - cef
+  - confgen
+  - cryptofuncs
+  - csvparser
+  - dbparser
+  - disk-buffer
+  - examples
+  - graphite
+  - hook-commands
+  - json-plugin
+  - kvformat
+  - linux-kmsg-format
+  - map-value-pairs
+  - pseudofile
+  - sdjournal
+  - stardate
+  - syslogformat
+  - system-source
+  - tags-parser
+  - tfgetent
+  - timestamp
+  - xml
+  - mod-python
+  - azure-auth-header
+  - http
+  - geoip2-plugin
+  - afsmtp
+  - riemann
+  - pacctformat
+  - regexp-parser
+  - rate-limit-filter
+  Compile-Date: Jun  8 2022 07:09:29
+  Config version: '3.35'
+  Enable-Debug: 'off'
+  Enable-GProf: 'off'
+  Enable-IPv6: 'on'
+  Enable-Linux-Caps: 'on'
+  Enable-Memtrace: 'off'
+  Enable-Spoof-Source: 'on'
+  Enable-Systemd: 'on'
+  Enable-TCP-Wrapper: 'off'
+  Include-Path: /usr/share/syslog-ng/include
+  Installer-Version: 3.37.1
+  Module-Directory: /usr/lib64/syslog-ng
+  Module-Path: /usr/lib64/syslog-ng
+  Revision: ''
