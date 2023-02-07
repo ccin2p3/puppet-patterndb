@@ -27,11 +27,13 @@ patterndb::simple::ruleset { 'a':
           program      => 'a',
           test_message => 'ma<>tch me dude',
           test_values  => {
-            'this' => 'me',
-          }
+            'this' => {
+              value => 'me',
+            },
+          },
         },
-      ]
-    }
+      ],
+    },
   ],
 }
 

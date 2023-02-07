@@ -16,7 +16,7 @@ describe 'patterndb::simple::ruleset' do
         {
           id: 'ID',
           pubdate: '1970-01-01',
-          version: '4',
+          version: 4,
         }
       end
       let :pre_condition do
@@ -27,7 +27,7 @@ describe 'patterndb::simple::ruleset' do
       context 'Simple ruleset without patterns' do
         let :params do
           default_params.merge(
-            rules: {},
+            rules: [],
           )
         end
 
@@ -38,49 +38,16 @@ describe 'patterndb::simple::ruleset' do
         }
       end
 
-      context 'Simple ruleset with wrong type for rules' do
-        let :params do
-          default_params.merge(
-            patterns: ['P'],
-            rules: 'invalid_type_is_string',
-          )
-        end
-
-        it { expect { is_expected.to compile }.to raise_error(%r{is neither a hash nor an array}m) }
-      end
-
-      context 'Simple ruleset with wrong type for patterns' do
-        let :params do
-          default_params.merge(
-            patterns: { 'P' => 'V' },
-            rules: {},
-          )
-        end
-
-        it { expect { is_expected.to compile }.to raise_error(%r{is neither a string nor an array}m) }
-      end
-
-      context 'Simple ruleset with illegal embedded rule definition (no id)' do
-        let :params do
-          default_params.merge(
-            patterns: ['P1'],
-            rules: {
-              'patterns' => ['this is a pattern'],
-            },
-          )
-        end
-
-        it { expect { is_expected.to compile }.to raise_error(%r{Failed to create embedded rule for ruleset.*no 'id' provided}m) }
-      end
-
       context 'Simple ruleset with hash type for rules' do
         let :params do
           default_params.merge(
             patterns: ['P1'],
-            rules: {
-              'id' => 'RULE_1_ID',
-              'patterns' => [],
-            },
+            rules: [
+              {
+                'id' => 'RULE_1_ID',
+                'patterns' => [],
+              },
+            ],
           )
         end
 
@@ -100,35 +67,6 @@ describe 'patterndb::simple::ruleset' do
         }
 
         it { is_expected.to contain_patterndb__simple__rule('RULE_1_ID') }
-      end
-
-      context 'Simple ruleset with string type for patterns' do
-        let :params do
-          default_params.merge(
-            patterns: 'P1',
-            rules: [],
-          )
-        end
-
-        it { is_expected.to contain_patterndb__parser('default') }
-
-        it {
-          is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with('path' => '/BASEDIR/etc/syslog-ng/patterndb.d/default/myruleset.pdb')
-          is_expected.to contain_concat__fragment('patterndb_simple_ruleset-myruleset-header').with_content(
-            %r{<patterns>.*<pattern>P1</pattern>.*</patterns>}m,
-          )
-        }
-      end
-
-      context 'Simple ruleset with invalid string type for rules' do
-        let :params do
-          default_params.merge(
-            patterns: ['P1', 'P2'],
-            rules: 'invalid_string_rule',
-          )
-        end
-
-        it { expect { is_expected.to compile }.to raise_error(%r{is neither a hash nor an array}m) }
       end
 
       context 'Simple ruleset with empty rules and patterns' do
@@ -232,8 +170,12 @@ describe 'patterndb::simple::ruleset' do
                     'test_message' => 'Simple ruleset with 2 rules and 1 example',
                     'program' => 'P1',
                     'test_values' => {
-                      'num_examples' => '1',
-                      'num_rules' => '2',
+                      'num_examples' => {
+                        'value' => '1',
+                      },
+                      'num_rules' => {
+                        'value' => '2',
+                      },
                     },
                   },
                 ],
@@ -247,14 +189,18 @@ describe 'patterndb::simple::ruleset' do
                     'test_message' => 'This is a simple rule',
                     'program' => 'P2',
                     'test_values' => {
-                      'type' => 'simple',
+                      'type' => {
+                        'value' => 'simple',
+                      },
                     },
                   },
                   {
                     'test_message' => 'This is a complicated rule',
                     'program' => 'P2',
                     'test_values' => {
-                      'type' => 'complicated',
+                      'type' => {
+                        'value' => 'complicated',
+                      },
                     },
                   },
                 ],
@@ -266,10 +212,7 @@ describe 'patterndb::simple::ruleset' do
         # it {
         #  pp subject.resources
         # }
-        it { is_expected.to contain_patterndb__simple__example('RULE_1_ID-0') }
-        it { is_expected.not_to contain_patterndb__simple__example('RULE_1_ID-1') }
-        it { is_expected.to contain_patterndb__simple__example('RULE_2_ID-0') }
-        it { is_expected.to contain_patterndb__simple__example('RULE_2_ID-1') }
+        it { is_expected.to compile.with_all_deps }
       end
 
       context 'Simple ruleset with one rule, correlation and action' do
@@ -348,13 +291,12 @@ describe 'patterndb::simple::ruleset' do
         }
 
         it { is_expected.to contain_patterndb__simple__action('RULE_ID-0') }
-        it { is_expected.to contain_patterndb__simple__action__message('RULE_ID-0') }
       end
 
       context 'Simple ruleset with order' do
         let :params do
           default_params.merge(
-            patterns: 'P1',
+            patterns: ['P1'],
             order: '123',
             rules: [],
           )

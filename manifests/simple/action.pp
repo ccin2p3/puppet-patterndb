@@ -1,22 +1,13 @@
 # default values are being ignored for now
 define patterndb::simple::action (
-  $rule,
-  $message,
-  $trigger = undef,
-  $rate = undef,
-  $condition = undef,
-  $_embedded = false,
-  $rule_order = '00',
+  String[1] $rule,
+  Hash $message,
+  Optional[Enum['match', 'timeout']] $trigger = undef,
+  Optional[String[1]] $rate = undef,
+  Optional[String[1]] $condition = undef,
+  Boolean $_embedded = false,
+  String[1] $rule_order = '00',
 ) {
-  validate_string($trigger)
-  if $trigger and ! ($trigger in ['match', 'timeout']) {
-    fail("`${trigger}` is not a valid trigger parameter value")
-  }
-  validate_string($rate)
-  validate_string($condition)
-  validate_hash($message)
-  # validate message
-  patterndb_simple_action_message ($message, $name)
   if (! $_embedded) { # we were defined outside the rule
     if (! defined(Patterndb::Simple::Rule[$rule])) {
       fail("Failed while trying to define action `${title}` for undeclared rule `${rule}`")

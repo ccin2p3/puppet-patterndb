@@ -6,7 +6,7 @@ class { 'patterndb':
 
 patterndb::simple::ruleset { 'plop':
   id       => 'plop',
-  patterns => 'plop',
+  patterns => ['plop'],
   pubdate  => '1970-01-01',
   rules    => [
     {
@@ -17,7 +17,7 @@ patterndb::simple::ruleset { 'plop':
       },
     },{
       id       => 'plop2',
-      patterns => 'hollo',
+      patterns => ['hollo'],
     }
   ],
 }
@@ -26,25 +26,29 @@ patterndb::simple::ruleset { 'a':
   id       => 'a',
   patterns => ['a'],
   pubdate  => '1985-01-01',
-  rules    => {
-    id        => 'b',
-    patterns  => ['match @ESTRING:this: @dude'],
-    ruleclass => 'b',
-    examples  => [
-      {
-        program      => 'a',
-        test_message => 'match me dude',
-        test_values  => {
-          'this' => 'me',
-        }
-      },
-    ],
-  },
+  rules    => [
+    {
+      id        => 'b',
+      patterns  => ['match @ESTRING:this: @dude'],
+      ruleclass => 'b',
+      examples  => [
+        {
+          program      => 'a',
+          test_message => 'match me dude',
+          test_values  => {
+            'this' => {
+              value => 'me',
+            },
+          },
+        },
+      ],
+    },
+  ],
 }
 
 patterndb::simple::rule { 'rule-a':
   ruleset  => 'a',
-  patterns => 'please match me',
+  patterns => ['please match me'],
   examples => [
     {
       program      => 'a',

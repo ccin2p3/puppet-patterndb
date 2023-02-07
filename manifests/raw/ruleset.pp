@@ -1,19 +1,13 @@
 #
 define patterndb::raw::ruleset (
-  $source,
-  $ensure = 'present',
-  $recurse = true,
-  $purge = true,
-  $sourceselect = 'all',
-  $parser = 'default',
-  $ignore = ['.svn', '.git'],
+  String[1] $source,
+  Enum['absent', 'directory', 'present'] $ensure = 'present',
+  Boolean $recurse = true,
+  Boolean $purge = true,
+  String[1] $sourceselect = 'all',
+  String[1] $parser = 'default',
+  Array[String[1]] $ignore = ['.svn', '.git'],
 ) {
-  validate_string($source)
-  validate_string($parser)
-  validate_string($ensure)
-  validate_string($sourceselect)
-  validate_bool($recurse)
-
   if ! defined(Class['Patterndb']) {
     include patterndb
   }

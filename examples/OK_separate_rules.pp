@@ -5,7 +5,7 @@ class { 'patterndb':
 }
 
 patterndb::simple::ruleset { 'empty_ruleset':
-  patterns => 'a',
+  patterns => ['a'],
   pubdate  => '1970-01-01',
 }
 
@@ -16,7 +16,7 @@ patterndb::simple::ruleset { 'ruleset-a':
 }
 
 patterndb::simple::ruleset { 'e3fea98a-6275-4a4a-990a-248f3f8ea8f6':
-  patterns => 'x',
+  patterns => ['x'],
   pubdate  => '2014-08-11',
 }
 
@@ -29,8 +29,10 @@ patterndb::simple::rule { 'x':
       program      => 'x',
       test_message => 'match something else like me dude',
       test_values  => {
-        'this' => 'me',
-      }
+        'this' => {
+          value => 'me',
+        },
+      },
     },
   ],
 }
@@ -44,8 +46,10 @@ patterndb::simple::rule { 'a':
       program      => 'a',
       test_message => 'match something else like me dude',
       test_values  => {
-        'this' => 'me',
-      }
+        'this' => {
+          value => 'me',
+        },
+      },
     },
   ],
 }
@@ -59,8 +63,10 @@ patterndb::simple::rule { 'b':
       program      => 'a',
       test_message => 'match me dude',
       test_values  => {
-        'this' => 'me',
-      }
+        'this' => {
+          value => 'me',
+        },
+      },
     },
   ],
 }
@@ -74,8 +80,10 @@ patterndb::simple::rule { 'c':
       program      => 'a',
       test_message => 'match even another me dude',
       test_values  => {
-        'this' => 'me',
-      }
+        'this' => {
+          value => 'me',
+        },
+      },
     },
   ],
 }

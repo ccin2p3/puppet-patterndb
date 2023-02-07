@@ -28,33 +28,63 @@ describe 'patterndb class' do
                 program      => 'puppetserver',
                 test_message => '2021-02-04T13:23:36.354-05:00 ERROR [qtp1102047314-254822] [puppetserver] Puppet Evaluation Error: Error while evaluating a Function Call, Could not find class ::mcollective_agent_bolt_tasks for vps238244.vittoria.pro (file: /etc/puppetlabs/code/environments/production/modules/mcollective/manifests/init.pp, line: 77, column: 3) on node vps238244.vittoria.pro',
                 test_values  => {
-                  '.puppetserver.severity'    => 'ERROR',
-                  '.puppetserver.thread_name' => 'qtp1102047314-254822',
-                  '.puppetserver.timestamp'   => '2021-02-04T13:23:36.354-05:00',
-                  'puppetserver.category'     => 'puppetserver',
-                  'puppetserver.message'      => 'Puppet Evaluation Error: Error while evaluating a Function Call, Could not find class ::mcollective_agent_bolt_tasks for vps238244.vittoria.pro (file: /etc/puppetlabs/code/environments/production/modules/mcollective/manifests/init.pp, line: 77, column: 3) on node vps238244.vittoria.pro',
+                  '.puppetserver.severity'    => {
+                    value => 'ERROR',
+                  },
+                  '.puppetserver.thread_name' => {
+                    value => 'qtp1102047314-254822',
+                  },
+                  '.puppetserver.timestamp'   => {
+                    value => '2021-02-04T13:23:36.354-05:00',
+                  },
+                  'puppetserver.category'     => {
+                    value => 'puppetserver',
+                  },
+                  'puppetserver.message'      => {
+                    value => 'Puppet Evaluation Error: Error while evaluating a Function Call, Could not find class ::mcollective_agent_bolt_tasks for vps238244.vittoria.pro (file: /etc/puppetlabs/code/environments/production/modules/mcollective/manifests/init.pp, line: 77, column: 3) on node vps238244.vittoria.pro',
+                  },
                 },
               },
               {
                 program      => 'puppetserver',
                 test_message => '2021-02-04T13:22:47.081-05:00 INFO  [qtp1102047314-255208] [puppetserver] Puppet Caching facts for desktop-8snl8la.lan',
                 test_values  => {
-                  '.puppetserver.severity'    => 'INFO',
-                  '.puppetserver.thread_name' => 'qtp1102047314-255208',
-                  '.puppetserver.timestamp'   => '2021-02-04T13:22:47.081-05:00',
-                  'puppetserver.category'     => 'puppetserver',
-                  'puppetserver.message'      => 'Puppet Caching facts for desktop-8snl8la.lan',
+                  '.puppetserver.severity'    => {
+                    value => 'INFO',
+                  },
+                  '.puppetserver.thread_name' => {
+                    value => 'qtp1102047314-255208',
+                  },
+                  '.puppetserver.timestamp'   => {
+                    value => '2021-02-04T13:22:47.081-05:00',
+                  },
+                  'puppetserver.category'     => {
+                    value => 'puppetserver',
+                  },
+                  'puppetserver.message'      => {
+                    value => 'Puppet Caching facts for desktop-8snl8la.lan',
+                  },
                 },
               },
               {
                 program      => 'puppetserver',
                 test_message => '2021-02-04T13:55:42.518-05:00 WARN  [qtp1102047314-255768] [puppetserver] Scope(Class[Nginx::Package::Debian]) You must set $package_name to "nginx-extras" to enable Passenger',
                 test_values  => {
-                  '.puppetserver.severity'    => 'WARN',
-                  '.puppetserver.thread_name' => 'qtp1102047314-255768',
-                  '.puppetserver.timestamp'   => '2021-02-04T13:55:42.518-05:00',
-                  'puppetserver.category'     => 'puppetserver',
-                  'puppetserver.message'      => 'Scope(Class[Nginx::Package::Debian]) You must set $package_name to "nginx-extras" to enable Passenger',
+                  '.puppetserver.severity'    => {
+                    value => 'WARN',
+                  },
+                  '.puppetserver.thread_name' => {
+                    value => 'qtp1102047314-255768',
+                  },
+                  '.puppetserver.timestamp'   => {
+                    value => '2021-02-04T13:55:42.518-05:00',
+                  },
+                  'puppetserver.category'     => {
+                    value => 'puppetserver',
+                  },
+                  'puppetserver.message'      => {
+                    value => 'Scope(Class[Nginx::Package::Debian]) You must set $package_name to "nginx-extras" to enable Passenger',
+                  },
                 },
               },
             ],

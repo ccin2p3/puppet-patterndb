@@ -12,10 +12,12 @@ patterndb::simple::ruleset { 'ruleset-a':
   id       => '99515b6c-2057-4232-b459-58ecaf2842bc',
   patterns => ['a'],
   pubdate  => '1985-01-01',
-  rules    => {
-    'id'       => 'MY_EMBEDDED_RULE_ID',
-    'patterns' => 'abcde',
-  },
+  rules    => [
+    {
+      'id'       => 'MY_EMBEDDED_RULE_ID',
+      'patterns' => ['abcde'],
+    },
+  ],
 }
 
 patterndb::simple::action { 'myaction':
@@ -37,8 +39,10 @@ patterndb::simple::rule { 'rule-a':
       program      => 'a',
       test_message => 'match something else like me dude',
       test_values  => {
-        'this' => 'me',
-      }
+        'this' => {
+          value => 'me',
+        },
+      },
     },
   ],
   actions   => [
@@ -62,8 +66,10 @@ patterndb::simple::rule { 'rule-b':
       program      => 'a',
       test_message => 'match even something else like me dude',
       test_values  => {
-        'this' => 'me',
-      }
+        'this' => {
+          value => 'me',
+        },
+      },
     },
   ],
 }

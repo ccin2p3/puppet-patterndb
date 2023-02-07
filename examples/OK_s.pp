@@ -22,8 +22,10 @@ patterndb::simple::ruleset { 'a':
           program      => 'a',
           test_message => 'match me dude',
           test_values  => {
-            'this' => 'me',
-          }
+            'this' => {
+              value => 'me',
+            },
+          },
         },
       ]
     }
