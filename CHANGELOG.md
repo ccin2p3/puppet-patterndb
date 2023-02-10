@@ -4,6 +4,35 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v5.0.0](https://github.com/ccin2p3/puppet-patterndb/tree/v5.0.0) (2023-02-07)
+
+[Full Changelog](https://github.com/ccin2p3/puppet-patterndb/compare/v4.0.1...v5.0.0)
+
+**Breaking changes:**
+
+- Add data types everywhere and do not allow values where arrays are expected [\#31](https://github.com/ccin2p3/puppet-patterndb/pull/31) ([smortex](https://github.com/smortex))
+- Add support for patterndb v6 type-hints [\#30](https://github.com/ccin2p3/puppet-patterndb/pull/30) ([smortex](https://github.com/smortex))
+- Drop support of CentOS 6 / RedHat 6 \(EOL\) [\#24](https://github.com/ccin2p3/puppet-patterndb/pull/24) ([smortex](https://github.com/smortex))
+
+**Implemented enhancements:**
+
+- Manage patterndb version in generated XML files [\#33](https://github.com/ccin2p3/puppet-patterndb/pull/33) ([faxm0dem](https://github.com/faxm0dem))
+- Add support for AlmaLinux [\#27](https://github.com/ccin2p3/puppet-patterndb/pull/27) ([smortex](https://github.com/smortex))
+- Add support for Rocky [\#26](https://github.com/ccin2p3/puppet-patterndb/pull/26) ([smortex](https://github.com/smortex))
+- Add support for Ubuntu [\#25](https://github.com/ccin2p3/puppet-patterndb/pull/25) ([smortex](https://github.com/smortex))
+
+**Fixed bugs:**
+
+- Fix dependencies version bounds [\#29](https://github.com/ccin2p3/puppet-patterndb/pull/29) ([smortex](https://github.com/smortex))
+
+**Closed issues:**
+
+- Bring back smoke tests ! [\#22](https://github.com/ccin2p3/puppet-patterndb/issues/22)
+
+**Merged pull requests:**
+
+- Run acceptance tests [\#21](https://github.com/ccin2p3/puppet-patterndb/pull/21) ([smortex](https://github.com/smortex))
+
 ## [v4.0.1](https://github.com/ccin2p3/puppet-patterndb/tree/v4.0.1) (2022-02-23)
 
 [Full Changelog](https://github.com/ccin2p3/puppet-patterndb/compare/v4.0.0...v4.0.1)
