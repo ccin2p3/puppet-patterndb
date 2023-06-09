@@ -5,7 +5,7 @@ define patterndb::simple::ruleset (
   Array[String[1]] $patterns    = [],
   Array[Patterndb::Rule] $rules = [],
   String[1] $parser             = 'default',
-  Integer $version              = if versioncmp($facts['syslog_ng_version'], '4.0.0') >= 0 {
+  Integer $version              = if versioncmp($facts.get('syslog_ng_version', '3.0.0'), '4.0.0') >= 0 {
     6
   } else {
     4
