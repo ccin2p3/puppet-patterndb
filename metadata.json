@@ -4,7 +4,7 @@
   "author": "ccin2p3",
   "summary": "Puppet module for patterndb (Syslog-ng)",
   "license": "CECILL-B",
-  "source": "git://github.com/ccin2p3/puppet-patterndb.git",
+  "source": "https://github.com/ccin2p3/puppet-patterndb.git",
   "project_page": "https://github.com/ccin2p3/puppet-patterndb",
   "issues_url": "https://github.com/ccin2p3/puppet-patterndb/issues",
   "dependencies": [

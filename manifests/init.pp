@@ -11,7 +11,7 @@ class patterndb (
 ) {
 # package
   if $manage_package {
-    if is_string($package_name) {
+    if $package_name =~ String {
       $real_package_name = $package_name
     } else {
       case $facts['os']['family'] {
