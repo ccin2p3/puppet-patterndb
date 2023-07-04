@@ -5,7 +5,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:string2array, type: :rvalue, doc: <<~EOS,
+  newfunction(:string2array, type: :rvalue, doc: <<~EOS
     This converts a string to an array containing that single element. Empty argument
     lists are converted to an empty array. Arrays are left untouched. Hashes throw
     an error

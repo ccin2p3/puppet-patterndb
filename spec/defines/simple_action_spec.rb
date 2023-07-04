@@ -40,7 +40,7 @@ describe 'patterndb::simple::action' do
       context 'Simple invalid action with no rule' do
         let :params do
           default_params.merge(
-            message: {},
+            message: {}
           )
         end
 
@@ -50,7 +50,7 @@ describe 'patterndb::simple::action' do
       context 'Simple invalid action with no message' do
         let :params do
           default_params.merge(
-            rule: 'myrule',
+            rule: 'myrule'
           )
         end
 
@@ -61,7 +61,7 @@ describe 'patterndb::simple::action' do
         let :params do
           default_params.merge(
             message: {},
-            rule: 'this_rule_was_not_predeclared',
+            rule: 'this_rule_was_not_predeclared'
           )
         end
 
@@ -73,9 +73,9 @@ describe 'patterndb::simple::action' do
           default_params.merge(
             message: {
               'values' => { 'a' => 'A' },
-              'tags' => ['t', 'T'],
+              'tags' => %w[t T],
             },
-            rule: 'myrule',
+            rule: 'myrule'
           )
         end
 
@@ -83,7 +83,7 @@ describe 'patterndb::simple::action' do
           is_expected.to contain_patterndb__simple__ruleset('myruleset')
           is_expected.to contain_patterndb__simple__rule('myrule')
           is_expected.to contain_patterndb__simple__action('myaction').with(
-            rule: 'myrule',
+            rule: 'myrule'
           )
         }
       end
@@ -93,9 +93,9 @@ describe 'patterndb::simple::action' do
           default_params.merge(
             message: {
               'values' => { 'a' => 'A' },
-              'tags' => ['t', 'T'],
+              'tags' => %w[t T],
             },
-            rule: 'myembeddedrule',
+            rule: 'myembeddedrule'
           )
         end
 
@@ -103,7 +103,7 @@ describe 'patterndb::simple::action' do
           is_expected.to contain_patterndb__simple__ruleset('myruleset')
           is_expected.to contain_patterndb__simple__rule('myembeddedrule')
           is_expected.to contain_patterndb__simple__action('myaction').with(
-            rule: 'myembeddedrule',
+            rule: 'myembeddedrule'
           )
         }
       end

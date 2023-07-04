@@ -5,7 +5,7 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:hash2array, type: :rvalue, doc: <<~EOS,
+  newfunction(:hash2array, type: :rvalue, doc: <<~EOS
     This converts a hash to an array containing that hash. Empty argument
     lists are converted to an empty array. Arrays are left untouched. Hashes are
     converted to arrays of alternating keys and values. Strings throw an error.

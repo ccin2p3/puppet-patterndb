@@ -30,7 +30,7 @@ describe 'patterndb::simple::rule' do
       context 'Simple invalid rule with no patterns' do
         let :params do
           default_params.merge(
-            ruleset: 'myruleset',
+            ruleset: 'myruleset'
           )
         end
 
@@ -40,7 +40,7 @@ describe 'patterndb::simple::rule' do
       context 'Simple invalid rule with no ruleset' do
         let :params do
           default_params.merge(
-            patterns: ["Ford... you're turning into a penguin. Stop it."],
+            patterns: ["Ford... you're turning into a penguin. Stop it."]
           )
         end
 
@@ -51,7 +51,7 @@ describe 'patterndb::simple::rule' do
         let :params do
           default_params.merge(
             patterns: ["Ford... you're turning into a penguin. Stop it."],
-            ruleset: 'this_ruleset_was_not_predeclared',
+            ruleset: 'this_ruleset_was_not_predeclared'
           )
         end
 
@@ -62,7 +62,7 @@ describe 'patterndb::simple::rule' do
         let :params do
           default_params.merge(
             patterns: ['Time is an illusion. Lunchtime doubly so.'],
-            ruleset: 'myruleset',
+            ruleset: 'myruleset'
           )
         end
 
@@ -70,18 +70,18 @@ describe 'patterndb::simple::rule' do
           is_expected.to contain_patterndb__simple__ruleset('myruleset')
           is_expected.to contain_patterndb__simple__rule('myrule').with(
             ruleset: 'myruleset',
-            patterns: ['Time is an illusion. Lunchtime doubly so.'],
+            patterns: ['Time is an illusion. Lunchtime doubly so.']
           )
         }
 
         it {
           is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with(
-            path: '/BASEDIR/etc/syslog-ng/patterndb.d/default/myruleset.pdb',
+            path: '/BASEDIR/etc/syslog-ng/patterndb.d/default/myruleset.pdb'
           )
           is_expected.to contain_concat__fragment('patterndb_simple_rule-myrule-header').with(
-            target: 'patterndb_simple_ruleset-myruleset',
+            target: 'patterndb_simple_ruleset-myruleset'
           ).with_content(
-            %r{<patterns>\s*<pattern>Time is an illusion. Lunchtime doubly so.</pattern>\s*</patterns>}m,
+            %r{<patterns>\s*<pattern>Time is an illusion. Lunchtime doubly so.</pattern>\s*</patterns>}m
           )
         }
       end
