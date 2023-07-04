@@ -10,7 +10,7 @@ configure_beaker do |host|
   install_package(host, 'lsb-release') if fact_on(host, 'os.name') == 'Ubuntu'
 
   install_module_from_forge_on(host, 'ccin2p3/syslog_ng', '>= 0')
-  install_module_from_forge_on(host, 'puppetlabs/apt', '>= 0 < 9.0.0')
+  install_module_from_forge_on(host, 'puppetlabs/apt', '>= 0 < 10.0.0')
   install_module_from_forge_on(host, 'puppet/epel', '>= 0')
 end
 
