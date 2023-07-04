@@ -3,6 +3,39 @@
 require 'spec_helper_acceptance'
 
 describe 'patterndb class' do
+  before(:all) do
+    shell('puppet module install ccin2p3/syslog_ng')
+    shell('puppet module install puppetlabs/apt')
+    shell('puppet module install puppet/epel')
+  end
+
+  # Setup requirements
+  it_behaves_like 'an idempotent resource' do
+    let(:manifest) do
+      <<-PUPPET
+        if fact('os.family') == 'RedHat' {
+          class { 'epel':
+          }
+          Class['epel'] -> Class['syslog_ng']
+        }
+
+        class { 'syslog_ng':
+          manage_repo => true,
+        }
+
+        syslog_ng::config { 'version':
+          content => '@version: 3.30',
+          order   => '02',
+        }
+
+        if fact('os.family') == 'Debian' {
+          syslog_ng::module { 'getent':
+          }
+        }
+      PUPPET
+    end
+  end
+
   it_behaves_like 'an idempotent resource' do
     let(:manifest) do
       <<-PUPPET
