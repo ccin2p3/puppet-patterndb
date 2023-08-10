@@ -15,18 +15,14 @@ define patterndb::parser (
     $tmp = join($_modules,' --module=')
     $modules = "--module=${tmp}"
   }
-  ensure_resource('file', "${patterndb::config_dir}/${name}", {
-      'ensure'  => 'directory',
-      'purge'   => true,
-      'force'   => true,
-      'recurse' => true,
-  })
+  file { "${patterndb::config_dir}/${name}":
+    ensure  => 'directory',
+    purge   => true,
+    force   => true,
+    recurse => true,
+  }
   ensure_resource ('file', "${patterndb::cache_dir}/patterndb", {
       'ensure' => 'directory',
-  })
-  ensure_resource ('file', "patterndb::file::${name}", {
-      'ensure' => 'present',
-      'path'   => "${patterndb::var_dir}/patterndb/${name}.xml"
   })
   exec { "patterndb::merge::${name}":
     command     => "pdbtool merge -r --glob \\*.pdb -D ${patterndb::config_dir}/${name} -p ${patterndb::cache_dir}/patterndb/${name}.xml",
@@ -34,33 +30,22 @@ define patterndb::parser (
     refreshonly => true,
   }
 
-  exec { "patterndb::test::${name}":
-    #command    => "/usr/bin/pdbtool --validate test ${::patterndb::cache_dir}/patterndb/${name}.xml $modules",
-    command     => "pdbtool test ${patterndb::cache_dir}/patterndb/${name}.xml ${modules}",
-    path        => $facts['path'],
-    refreshonly => true,
+  $deploy_command = if $test_before_deploy.lest || { $patterndb::test_before_deploy } {
+    "rm -f ${patterndb::var_dir}/patterndb/${name}.xml && pdbtool test ${patterndb::cache_dir}/patterndb/${name}.xml ${modules} && cp ${patterndb::cache_dir}/patterndb/${name}.xml ${patterndb::var_dir}/patterndb/${name}.xml"
+  } else {
+    "cp ${patterndb::cache_dir}/patterndb/${name}.xml ${patterndb::var_dir}/patterndb/${name}.xml"
   }
 
   exec { "patterndb::deploy::${name}":
-    command     => "cp ${patterndb::cache_dir}/patterndb/${name}.xml ${patterndb::var_dir}/patterndb/",
-    logoutput   => true,
-    path        => $facts['path'],
-    refreshonly => true,
+    command   => $deploy_command,
+    logoutput => true,
+    path      => $facts['path'],
+    onlyif    => "[ ! -f ${patterndb::var_dir}/patterndb/${name}.xml -o ${patterndb::cache_dir}/patterndb/${name}.xml -nt ${patterndb::var_dir}/patterndb/${name}.xml ]",
+    require   => Exec["patterndb::merge::${name}"],
   }
-  if $test_before_deploy =~ Undef {
-    $_test_before_deploy = $patterndb::test_before_deploy
-  } else {
-    $_test_before_deploy = $test_before_deploy
-  }
-  if $_test_before_deploy {
-    File["patterndb::file::${name}"]
-    ~> Exec["patterndb::merge::${name}"]
-    ~> Exec["patterndb::test::${name}"]
-    ~> Exec["patterndb::deploy::${name}"]
-  } else {
-    File["patterndb::file::${name}"]
-    ~> Exec["patterndb::merge::${name}"]
-    # we won't 'pdbtool test' the merged file before deploying
-    ~> Exec["patterndb::deploy::${name}"]
+
+  file { "patterndb::file::${name}":
+    path    => "${patterndb::var_dir}/patterndb/${name}.xml",
+    require => Exec["patterndb::deploy::${name}"],
   }
 }
