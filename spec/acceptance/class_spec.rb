@@ -19,12 +19,20 @@ describe 'patterndb class' do
           Class['epel'] -> Class['syslog_ng']
         }
 
+        if fact('os.family') == 'Debian' {
+          # Versions 4.3.0 and 4.3.1 (current) are broken on Debian
+          $version = '3.38.1-1'
+        } else {
+          $version = undef
+        }
+
         class { 'syslog_ng':
-          manage_repo => true,
+          manage_repo    => true,
+          package_ensure => $version,
         }
 
         syslog_ng::config { 'version':
-          content => '@version: 3.30',
+          content => '@version: 3.38',
           order   => '02',
         }
 
