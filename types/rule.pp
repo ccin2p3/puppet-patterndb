@@ -1,7 +1,7 @@
 type Patterndb::Rule = Struct[
   {
     patterns        => Array[String[1]],
-    id              => String[1],
+    id              => Optional[String[1]],
     provider        => Optional[String[1]],
     ruleclass       => Optional[String[1]],
     context_id      => Optional[String[1]],
