@@ -8,7 +8,7 @@ type Patterndb::Example = Struct[
         Struct[
           {
             type  => Optional[Enum['datetime', 'double', 'integer', 'json', 'string']],
-            value => String[1],
+            value => String,
           }
         ],
       ],
