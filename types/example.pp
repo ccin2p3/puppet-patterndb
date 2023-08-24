@@ -1,6 +1,6 @@
 type Patterndb::Example = Struct[
   {
-    program      => String[1],
+    program      => String,
     test_message => String[1],
     test_values  => Optional[
       Hash[
