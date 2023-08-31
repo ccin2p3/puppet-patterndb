@@ -20,7 +20,7 @@ describe 'patterndb::parser', type: 'define' do
 
         it {
           is_expected.to contain_file('patterndb::file::default').with(
-            'ensure' => 'present',
+            'ensure' => 'present'
           ).that_notifies('Exec[patterndb::merge::default]')
         }
       end
@@ -34,7 +34,7 @@ describe 'patterndb::parser', type: 'define' do
 
         it {
           is_expected.to contain_exec('patterndb::test::default').with(
-            'command' => %r{patterndb/default\.xml $}m,
+            'command' => %r{patterndb/default\.xml $}m
           )
         }
       end
@@ -42,13 +42,13 @@ describe 'patterndb::parser', type: 'define' do
       context 'With optional syslog-ng module' do
         let :params do
           {
-            syslogng_modules: ['foo', 'bar'],
+            syslogng_modules: %w[foo bar],
           }
         end
 
         it {
           is_expected.to contain_exec('patterndb::test::default').with(
-            'command' => %r{patterndb/default\.xml --module=foo --module=bar$}m,
+            'command' => %r{patterndb/default\.xml --module=foo --module=bar$}m
           )
         }
       end
@@ -60,13 +60,13 @@ describe 'patterndb::parser', type: 'define' do
 
         it {
           is_expected.to contain_exec('patterndb::test::default').with(
-            'command' => %r{patterndb/default\.xml $}m,
+            'command' => %r{patterndb/default\.xml $}m
           )
         }
 
         it {
           is_expected.to contain_exec('patterndb::test::stage1').with(
-            'command' => %r{patterndb/stage1\.xml $}m,
+            'command' => %r{patterndb/stage1\.xml $}m
           )
         }
       end
@@ -79,7 +79,7 @@ describe 'patterndb::parser', type: 'define' do
 
         it {
           is_expected.to contain_exec('patterndb::test::default').with(
-            'command' => %r{patterndb/default\.xml --module=foo --module=bar$}m,
+            'command' => %r{patterndb/default\.xml --module=foo --module=bar$}m
           )
         }
       end
@@ -91,7 +91,7 @@ describe 'patterndb::parser', type: 'define' do
 
         it {
           is_expected.to contain_exec('patterndb::test::default').with(
-            'command' => %r{patterndb/default\.xml $}m,
+            'command' => %r{patterndb/default\.xml $}m
           )
         }
       end

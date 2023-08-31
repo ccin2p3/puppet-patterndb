@@ -37,6 +37,6 @@ patterndb::simple::ruleset { 'a':
   ],
 }
 
-create_resources('patterndb::simple::ruleset', hiera('patterndb::simple::ruleset',{},'patterndb'))
-create_resources('patterndb::simple::rule', hiera('patterndb::simple::rule',{},'patterndb'))
-#create_resources('patterndb::simple::action', hiera('patterndb::simple::action',{},'patterndb'))
+create_resources('patterndb::simple::ruleset', lookup('patterndb::simple::ruleset', undef, undef, {}))
+create_resources('patterndb::simple::rule', lookup('patterndb::simple::rule', undef, undef, {}))
+#create_resources('patterndb::simple::action', lookup('patterndb::simple::action', undef, undef, {}))

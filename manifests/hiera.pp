@@ -4,18 +4,18 @@ class patterndb::hiera (
 ) {
   create_resources(
     'patterndb::parser',
-    hiera_hash("${prefix}::parser", {})
+    lookup("${prefix}::parser", default_value => {})
   )
   create_resources(
     'patterndb::simple::ruleset',
-    hiera_hash("${prefix}::ruleset",{})
+    lookup("${prefix}::ruleset", default_value => {})
   )
   create_resources(
     'patterndb::simple::rule',
-    hiera_hash("${prefix}::rule", {})
+    lookup("${prefix}::rule", default_value => {})
   )
   create_resources(
     'patterndb::simple::action',
-    hiera_hash("${prefix}::action", {})
+    lookup("${prefix}::action", default_value => {})
   )
 }
