@@ -15,19 +15,20 @@ define patterndb::parser (
     $tmp = join($_modules,' --module=')
     $modules = "--module=${tmp}"
   }
-  ensure_resource('file', "${patterndb::pdb_dir}/${name}", {
-      'ensure'  => 'directory',
-      'purge'   => true,
-      'force'   => true,
-      'recurse' => true,
-  })
+
+  file { "${patterndb::pdb_dir}/${name}":
+    ensure  => 'directory',
+    force   => true,
+    recurse => true,
+    purge   => true,
+  }
+
   ensure_resource ('file', "${patterndb::temp_dir}/patterndb", {
       'ensure' => 'directory',
   })
-  ensure_resource ('file', "patterndb::file::${name}", {
-      'ensure' => 'present',
-      'path'   => "${patterndb::base_dir}/var/lib/syslog-ng/patterndb/${name}.xml"
-  })
+
+  $_test_before_deploy = $test_before_deploy.lest || { $patterndb::test_before_deploy }
+
   exec { "patterndb::merge::${name}":
     command     => "pdbtool merge -r --glob \\*.pdb -D ${patterndb::pdb_dir}/${name} -p ${patterndb::temp_dir}/patterndb/${name}.xml",
     path        => $facts['path'],
@@ -35,34 +36,17 @@ define patterndb::parser (
     refreshonly => true,
   }
 
-  exec { "patterndb::test::${name}":
-    #command    => "/usr/bin/pdbtool --validate test ${::patterndb::temp_dir}/patterndb/${name}.xml $modules",
-    command     => "pdbtool test ${patterndb::temp_dir}/patterndb/${name}.xml ${modules}",
-    path        => $facts['path'],
-    logoutput   => true,
-    refreshonly => true,
+  $deploy_command = if $_test_before_deploy {
+    "pdbtool test ${patterndb::temp_dir}/patterndb/${name}.xml ${modules} && cp ${patterndb::temp_dir}/patterndb/${name}.xml ${patterndb::base_dir}/var/lib/syslog-ng/patterndb/${name}.xml"
+  } else {
+    "cp ${patterndb::temp_dir}/patterndb/${name}.xml ${patterndb::base_dir}/var/lib/syslog-ng/patterndb/${name}.xml"
   }
 
   exec { "patterndb::deploy::${name}":
-    command     => "cp ${patterndb::temp_dir}/patterndb/${name}.xml ${patterndb::base_dir}/var/lib/syslog-ng/patterndb/",
-    logoutput   => true,
-    path        => $facts['path'],
-    refreshonly => true,
-  }
-  if $test_before_deploy =~ Undef {
-    $_test_before_deploy = $patterndb::test_before_deploy
-  } else {
-    $_test_before_deploy = $test_before_deploy
-  }
-  if $_test_before_deploy {
-    File["patterndb::file::${name}"]
-    ~> Exec["patterndb::merge::${name}"]
-    ~> Exec["patterndb::test::${name}"]
-    ~> Exec["patterndb::deploy::${name}"]
-  } else {
-    File["patterndb::file::${name}"]
-    ~> Exec["patterndb::merge::${name}"]
-    # we won't 'pdbtool test' the merged file before deploying
-    ~> Exec["patterndb::deploy::${name}"]
+    command   => $deploy_command,
+    path      => $facts['path'],
+    logoutput => true,
+    onlyif    => "[ ! -f ${patterndb::base_dir}/var/lib/syslog-ng/patterndb/${name}.xml -o ${patterndb::temp_dir}/patterndb/${name}.xml -nt ${patterndb::base_dir}/var/lib/syslog-ng/patterndb/${name}.xml ]",
+    require   => Exec["patterndb::merge::${name}"],
   }
 }
