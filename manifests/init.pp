@@ -17,6 +17,7 @@ class patterndb (
       case $facts['os']['family'] {
         'RedHat': { $real_package_name = 'syslog-ng' }
         'Debian': { $real_package_name = 'syslog-ng-core' }
+        'FreeBSD': { $real_package_name = 'syslog-ng' }
         default: { fail("unsupported osfamily: ${facts['os']['family']}") }
       }
     }
