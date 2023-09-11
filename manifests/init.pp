@@ -2,8 +2,8 @@
 class patterndb (
   String[1] $package_name,
   Stdlib::Absolutepath $config_dir,
+  Stdlib::Absolutepath $cache_dir = '/var/cache/syslog-ng',
   String[1] $base_dir = '/',
-  String[1] $temp_dir = "${base_dir}/tmp/syslog-ng",
   Boolean $manage_package = true,
   Array[String[1]] $syslogng_modules = [],
   Boolean $use_hiera = false,
@@ -13,7 +13,7 @@ class patterndb (
   if $manage_package {
     ensure_resource ( 'package', $package_name, { 'ensure' => 'installed' })
   }
-  ensure_resource ( 'file', $temp_dir, { ensure => directory })
+  ensure_resource ( 'file', $cache_dir, { ensure => directory })
   ensure_resource (
     'file', "${base_dir}/var/lib/syslog-ng",
     { ensure => 'directory' }

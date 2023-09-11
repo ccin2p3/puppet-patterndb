@@ -21,7 +21,7 @@ define patterndb::parser (
       'force'   => true,
       'recurse' => true,
   })
-  ensure_resource ('file', "${patterndb::temp_dir}/patterndb", {
+  ensure_resource ('file', "${patterndb::cache_dir}/patterndb", {
       'ensure' => 'directory',
   })
   ensure_resource ('file', "patterndb::file::${name}", {
@@ -29,22 +29,22 @@ define patterndb::parser (
       'path'   => "${patterndb::base_dir}/var/lib/syslog-ng/patterndb/${name}.xml"
   })
   exec { "patterndb::merge::${name}":
-    command     => "pdbtool merge -r --glob \\*.pdb -D ${patterndb::config_dir}/${name} -p ${patterndb::temp_dir}/patterndb/${name}.xml",
+    command     => "pdbtool merge -r --glob \\*.pdb -D ${patterndb::config_dir}/${name} -p ${patterndb::cache_dir}/patterndb/${name}.xml",
     path        => $facts['path'],
     logoutput   => true,
     refreshonly => true,
   }
 
   exec { "patterndb::test::${name}":
-    #command    => "/usr/bin/pdbtool --validate test ${::patterndb::temp_dir}/patterndb/${name}.xml $modules",
-    command     => "pdbtool test ${patterndb::temp_dir}/patterndb/${name}.xml ${modules}",
+    #command    => "/usr/bin/pdbtool --validate test ${::patterndb::cache_dir}/patterndb/${name}.xml $modules",
+    command     => "pdbtool test ${patterndb::cache_dir}/patterndb/${name}.xml ${modules}",
     path        => $facts['path'],
     logoutput   => true,
     refreshonly => true,
   }
 
   exec { "patterndb::deploy::${name}":
-    command     => "cp ${patterndb::temp_dir}/patterndb/${name}.xml ${patterndb::base_dir}/var/lib/syslog-ng/patterndb/",
+    command     => "cp ${patterndb::cache_dir}/patterndb/${name}.xml ${patterndb::base_dir}/var/lib/syslog-ng/patterndb/",
     logoutput   => true,
     path        => $facts['path'],
     refreshonly => true,
