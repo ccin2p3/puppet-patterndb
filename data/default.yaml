@@ -9,3 +9,4 @@ patterndb::_manage_top_dirs: true
 patterndb::test_before_deploy: &test_before_deploy true
 patterndb::parser::test_before_deploy: *test_before_deploy
 patterndb::config_dir: /etc/syslog-ng/patterndb.d
+patterndb::var_dir: /var/lib/syslog-ng
