@@ -1,8 +1,8 @@
 #
 class patterndb (
+  String[1] $package_name,
   String[1] $base_dir = '/',
   String[1] $temp_dir = "${base_dir}/tmp/syslog-ng",
-  Variant[String[1],Boolean] $package_name = false,
   Boolean $manage_package = true,
   Array[String[1]] $syslogng_modules = [],
   Boolean $use_hiera = false,
@@ -11,17 +11,7 @@ class patterndb (
 ) {
 # package
   if $manage_package {
-    if $package_name =~ String {
-      $real_package_name = $package_name
-    } else {
-      case $facts['os']['family'] {
-        'RedHat': { $real_package_name = 'syslog-ng' }
-        'Debian': { $real_package_name = 'syslog-ng-core' }
-        'FreeBSD': { $real_package_name = 'syslog-ng' }
-        default: { fail("unsupported osfamily: ${facts['os']['family']}") }
-      }
-    }
-    ensure_resource ( 'package', $real_package_name, { 'ensure' => 'installed' })
+    ensure_resource ( 'package', $package_name, { 'ensure' => 'installed' })
   }
   ensure_resource ( 'file', $temp_dir, { ensure => directory })
   if $_manage_top_dirs {
