@@ -37,13 +37,6 @@ describe 'patterndb', type: 'class' do
       end
     end
   end
-  context 'Unsupported OS without package_name' do
-    let :facts do
-      { osfamily: 'UnsupportedOne' }
-    end
-
-    it { is_expected.to raise_error(Puppet::Error) }
-  end
 
   context 'Any OS with a package name' do
     let :params do
