@@ -25,7 +25,7 @@ define patterndb::simple::ruleset (
     }
   }
 
-  $pdb_file = "${patterndb::pdb_dir}/${parser}/${order}${name}.pdb"
+  $pdb_file = "${patterndb::config_dir}/${parser}/${order}${name}.pdb"
 
   concat { "patterndb_simple_ruleset-${title}":
     path   => $pdb_file,

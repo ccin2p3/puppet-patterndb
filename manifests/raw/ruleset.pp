@@ -20,7 +20,7 @@ define patterndb::raw::ruleset (
   }
 
   if $ensure == 'directory' {
-    file { "${patterndb::pdb_dir}/${parser}/${name}":
+    file { "${patterndb::config_dir}/${parser}/${name}":
       ensure       => $ensure,
       recurse      => $recurse,
       mode         => '0644',
@@ -31,7 +31,7 @@ define patterndb::raw::ruleset (
       notify       => Exec["patterndb::merge::${parser}"],
     }
   } else {
-    file { "${patterndb::pdb_dir}/${parser}/${name}.pdb":
+    file { "${patterndb::config_dir}/${parser}/${name}.pdb":
       ensure => $ensure,
       mode   => '0644',
       source => $source,
