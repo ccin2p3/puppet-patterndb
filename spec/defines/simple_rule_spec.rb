@@ -74,10 +74,21 @@ describe 'patterndb::simple::rule' do
           )
         }
 
+        case facts[:osfamily]
+        when 'FreeBSD'
+          it {
+            is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with(
+              path: '/BASEDIR/usr/local/etc/patterndb.d/default/myruleset.pdb'
+            )
+          }
+        else
+          it {
+            is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with(
+              path: '/BASEDIR/etc/syslog-ng/patterndb.d/default/myruleset.pdb'
+            )
+          }
+        end
         it {
-          is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with(
-            path: '/BASEDIR/etc/syslog-ng/patterndb.d/default/myruleset.pdb'
-          )
           is_expected.to contain_concat__fragment('patterndb_simple_rule-myrule-header').with(
             target: 'patterndb_simple_ruleset-myruleset'
           ).with_content(

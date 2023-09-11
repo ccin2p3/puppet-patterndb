@@ -1,6 +1,7 @@
 #
 class patterndb (
   String[1] $package_name,
+  Stdlib::Absolutepath $config_dir,
   String[1] $base_dir = '/',
   String[1] $temp_dir = "${base_dir}/tmp/syslog-ng",
   Boolean $manage_package = true,
@@ -35,8 +36,7 @@ class patterndb (
       recurse => true
     }
   )
-  $pdb_dir = "${base_dir}/etc/syslog-ng/patterndb.d"
-  file { $pdb_dir:
+  file { $config_dir:
     ensure  => directory,
     purge   => true,
     force   => true,

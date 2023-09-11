@@ -31,9 +31,12 @@ describe 'patterndb::raw::ruleset' do
           }
         end
 
-        it {
-          is_expected.to contain_file('BASEDIR/etc/syslog-ng/patterndb.d/default/myrawruleset.pdb')
-        }
+        case facts[:osfamily]
+        when 'FreeBSD'
+          it { is_expected.to contain_file('BASEDIR/usr/local/etc/patterndb.d/default/myrawruleset.pdb') }
+        else
+          it { is_expected.to contain_file('BASEDIR/etc/syslog-ng/patterndb.d/default/myrawruleset.pdb') }
+        end
       end
 
       context 'Raw rulesets with directory' do
@@ -44,11 +47,12 @@ describe 'patterndb::raw::ruleset' do
           }
         end
 
-        it {
-          is_expected.to contain_file('BASEDIR/etc/syslog-ng/patterndb.d/default/myrawruleset').with(
-            ensure: 'directory'
-          )
-        }
+        case facts[:osfamily]
+        when 'FreeBSD'
+          it { is_expected.to contain_file('BASEDIR/usr/local/etc/patterndb.d/default/myrawruleset').with(ensure: 'directory') }
+        else
+          it { is_expected.to contain_file('BASEDIR/etc/syslog-ng/patterndb.d/default/myrawruleset').with(ensure: 'directory') }
+        end
       end
     end
   end

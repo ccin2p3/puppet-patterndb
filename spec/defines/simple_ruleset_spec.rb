@@ -59,8 +59,13 @@ describe 'patterndb::simple::ruleset' do
 
         it { is_expected.to contain_patterndb__parser('default') }
 
+        case facts[:osfamily]
+        when 'FreeBSD'
+          it { is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with('path' => '/BASEDIR/usr/local/etc/patterndb.d/default/myruleset.pdb') }
+        else
+          it { is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with('path' => '/BASEDIR/etc/syslog-ng/patterndb.d/default/myruleset.pdb') }
+        end
         it {
-          is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with('path' => '/BASEDIR/etc/syslog-ng/patterndb.d/default/myruleset.pdb')
           is_expected.to contain_concat__fragment('patterndb_simple_ruleset-myruleset-header').with_content(
             %r{<patterns>.*<pattern>P1</pattern>.*</patterns>}m
           )
@@ -79,8 +84,13 @@ describe 'patterndb::simple::ruleset' do
 
         it { is_expected.to contain_patterndb__parser('default') }
 
+        case facts[:osfamily]
+        when 'FreeBSD'
+          it { is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with('path' => '/BASEDIR/usr/local/etc/patterndb.d/default/myruleset.pdb') }
+        else
+          it { is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with('path' => '/BASEDIR/etc/syslog-ng/patterndb.d/default/myruleset.pdb') }
+        end
         it {
-          is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with('path' => '/BASEDIR/etc/syslog-ng/patterndb.d/default/myruleset.pdb')
           is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').that_notifies(
             'Exec[patterndb::merge::default]'
           )
@@ -135,7 +145,13 @@ describe 'patterndb::simple::ruleset' do
 
         it { is_expected.not_to contain_patterndb__parser('default') }
         it { is_expected.to contain_patterndb__parser('PARSER') }
-        it { is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with('path' => '/BASEDIR/etc/syslog-ng/patterndb.d/PARSER/myruleset.pdb') }
+
+        case facts[:osfamily]
+        when 'FreeBSD'
+          it { is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with('path' => '/BASEDIR/usr/local/etc/patterndb.d/PARSER/myruleset.pdb') }
+        else
+          it { is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with('path' => '/BASEDIR/etc/syslog-ng/patterndb.d/PARSER/myruleset.pdb') }
+        end
 
         it {
           is_expected.to contain_concat__fragment('patterndb_simple_ruleset-myruleset-header').with(
@@ -304,8 +320,13 @@ describe 'patterndb::simple::ruleset' do
 
         it { is_expected.to contain_patterndb__parser('default') }
 
+        case facts[:osfamily]
+        when 'FreeBSD'
+          it { is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with('path' => '/BASEDIR/usr/local/etc/patterndb.d/default/123myruleset.pdb') }
+        else
+          it { is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with('path' => '/BASEDIR/etc/syslog-ng/patterndb.d/default/123myruleset.pdb') }
+        end
         it {
-          is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with('path' => '/BASEDIR/etc/syslog-ng/patterndb.d/default/123myruleset.pdb')
           is_expected.to contain_concat__fragment('patterndb_simple_ruleset-myruleset-header').with_content(
             %r{<patterns>.*<pattern>P1</pattern>.*</patterns>}m
           )

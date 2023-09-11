@@ -15,7 +15,7 @@ define patterndb::parser (
     $tmp = join($_modules,' --module=')
     $modules = "--module=${tmp}"
   }
-  ensure_resource('file', "${patterndb::pdb_dir}/${name}", {
+  ensure_resource('file', "${patterndb::config_dir}/${name}", {
       'ensure'  => 'directory',
       'purge'   => true,
       'force'   => true,
@@ -29,7 +29,7 @@ define patterndb::parser (
       'path'   => "${patterndb::base_dir}/var/lib/syslog-ng/patterndb/${name}.xml"
   })
   exec { "patterndb::merge::${name}":
-    command     => "pdbtool merge -r --glob \\*.pdb -D ${patterndb::pdb_dir}/${name} -p ${patterndb::temp_dir}/patterndb/${name}.xml",
+    command     => "pdbtool merge -r --glob \\*.pdb -D ${patterndb::config_dir}/${name} -p ${patterndb::temp_dir}/patterndb/${name}.xml",
     path        => $facts['path'],
     logoutput   => true,
     refreshonly => true,
