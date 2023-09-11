@@ -1,6 +1,5 @@
 ---
 patterndb::base_dir: /
-patterndb::temp_dir: /tmp/syslog-ng
 patterndb::package_name: false
 patterndb::manage_package: true
 patterndb::package_name: syslog-ng
