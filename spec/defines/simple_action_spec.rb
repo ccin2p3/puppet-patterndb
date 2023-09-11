@@ -18,7 +18,7 @@ describe 'patterndb::simple::action' do
         }
       end
       let :pre_condition do
-        'class { "patterndb": base_dir => "/BASEDIR", }
+        'class { "patterndb": }
         patterndb::simple::ruleset { "myruleset":
           id => "RULESET_ID",
           pubdate => "1970-01-01",

@@ -18,7 +18,7 @@ describe 'patterndb::simple::rule' do
         }
       end
       let :pre_condition do
-        'class { "patterndb": base_dir => "/BASEDIR", }
+        'class { "patterndb": }
         patterndb::simple::ruleset { "myruleset":
           id => "RULESET_ID",
           pubdate => "1970-01-01",
@@ -78,13 +78,13 @@ describe 'patterndb::simple::rule' do
         when 'FreeBSD'
           it {
             is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with(
-              path: '/BASEDIR/usr/local/etc/patterndb.d/default/myruleset.pdb'
+              path: '/usr/local/etc/patterndb.d/default/myruleset.pdb'
             )
           }
         else
           it {
             is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with(
-              path: '/BASEDIR/etc/syslog-ng/patterndb.d/default/myruleset.pdb'
+              path: '/etc/syslog-ng/patterndb.d/default/myruleset.pdb'
             )
           }
         end

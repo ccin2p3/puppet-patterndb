@@ -4,7 +4,6 @@ Exec {
 }
 class { 'patterndb':
   manage_package   => false,
-  base_dir         => '/tmp/',
   syslogng_modules => ['basicfuncs'],
 }
 
