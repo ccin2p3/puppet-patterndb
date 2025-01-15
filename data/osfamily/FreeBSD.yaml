@@ -1,0 +1,3 @@
+---
+patterndb::config_dir: /usr/local/etc/patterndb.d
+patterndb::var_dir: /var/syslog-ng

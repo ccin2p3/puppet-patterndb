@@ -1,7 +1,6 @@
 #
 class { 'patterndb':
   manage_package => false,
-  base_dir       => '/tmp/',
 }
 
 patterndb::raw::ruleset { 'raw':
