@@ -31,7 +31,6 @@ define patterndb::parser (
   exec { "patterndb::merge::${name}":
     command     => "pdbtool merge -r --glob \\*.pdb -D ${patterndb::config_dir}/${name} -p ${patterndb::cache_dir}/patterndb/${name}.xml",
     path        => $facts['path'],
-    logoutput   => true,
     refreshonly => true,
   }
 
@@ -39,7 +38,6 @@ define patterndb::parser (
     #command    => "/usr/bin/pdbtool --validate test ${::patterndb::cache_dir}/patterndb/${name}.xml $modules",
     command     => "pdbtool test ${patterndb::cache_dir}/patterndb/${name}.xml ${modules}",
     path        => $facts['path'],
-    logoutput   => true,
     refreshonly => true,
   }
 
