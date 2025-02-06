@@ -14,15 +14,18 @@ describe 'patterndb::parser', type: 'define' do
       end
       let(:pre_condition) { 'include patterndb' }
 
+      # Os-specific adjustments
+      let :vardir do
+        if facts[:os]['family'] == 'FreeBSD'
+          '/var/syslog-ng'
+        else
+          '/var/lib/syslog-ng'
+        end
+      end
+
       context 'Catchall' do
         it { is_expected.to contain_class('Patterndb') }
         it { is_expected.to contain_exec('patterndb::merge::default') }
-
-        it {
-          is_expected.to contain_file('patterndb::file::default').with(
-            'ensure' => 'present'
-          ).that_notifies('Exec[patterndb::merge::default]')
-        }
       end
 
       context 'Default values (no parameters)' do
@@ -33,8 +36,8 @@ describe 'patterndb::parser', type: 'define' do
         end
 
         it {
-          is_expected.to contain_exec('patterndb::test::default').with(
-            'command' => %r{patterndb/default\.xml $}m
+          is_expected.to contain_exec('patterndb::deploy::default').with(
+            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
           )
         }
       end
@@ -47,8 +50,8 @@ describe 'patterndb::parser', type: 'define' do
         end
 
         it {
-          is_expected.to contain_exec('patterndb::test::default').with(
-            'command' => %r{patterndb/default\.xml --module=foo --module=bar$}m
+          is_expected.to contain_exec('patterndb::deploy::default').with(
+            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml --module=foo --module=bar && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
           )
         }
       end
@@ -59,14 +62,14 @@ describe 'patterndb::parser', type: 'define' do
         end
 
         it {
-          is_expected.to contain_exec('patterndb::test::default').with(
-            'command' => %r{patterndb/default\.xml $}m
+          is_expected.to contain_exec('patterndb::deploy::default').with(
+            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
           )
         }
 
         it {
-          is_expected.to contain_exec('patterndb::test::stage1').with(
-            'command' => %r{patterndb/stage1\.xml $}m
+          is_expected.to contain_exec('patterndb::deploy::stage1').with(
+            'command' => "rm -f #{vardir}/patterndb/stage1.xml && pdbtool test /var/cache/syslog-ng/patterndb/stage1.xml  && cp /var/cache/syslog-ng/patterndb/stage1.xml #{vardir}/patterndb/stage1.xml"
           )
         }
       end
@@ -78,8 +81,8 @@ describe 'patterndb::parser', type: 'define' do
         end
 
         it {
-          is_expected.to contain_exec('patterndb::test::default').with(
-            'command' => %r{patterndb/default\.xml --module=foo --module=bar$}m
+          is_expected.to contain_exec('patterndb::deploy::default').with(
+            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml --module=foo --module=bar && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
           )
         }
       end
@@ -90,20 +93,20 @@ describe 'patterndb::parser', type: 'define' do
         end
 
         it {
-          is_expected.to contain_exec('patterndb::test::default').with(
-            'command' => %r{patterndb/default\.xml $}m
+          is_expected.to contain_exec('patterndb::deploy::default').with(
+            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
           )
         }
       end
 
-      context 'Without test_before_deploy' do
+      context 'Without deploy' do
         let :params do
           {
             test_before_deploy: false,
           }
         end
 
-        it { is_expected.to contain_exec('patterndb::merge::default').that_notifies('Exec[patterndb::deploy::default]') }
+        it { is_expected.to contain_exec('patterndb::deploy::default').with(command: "cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml") }
       end
 
       context 'With test_before_deploy' do
@@ -113,8 +116,7 @@ describe 'patterndb::parser', type: 'define' do
           }
         end
 
-        it { is_expected.to contain_exec('patterndb::merge::default').that_notifies('Exec[patterndb::test::default]') }
-        it { is_expected.to contain_exec('patterndb::test::default').that_notifies('Exec[patterndb::deploy::default]') }
+        it { is_expected.to contain_exec('patterndb::deploy::default').with(command: "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml") }
       end
     end
   end
