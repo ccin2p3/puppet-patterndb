@@ -44,7 +44,7 @@ patterndb::simple::ruleset { 'dhclient':
           test_message => 'and that too'
         },
       ],
-    }
+    },
   ],
 }
 
@@ -60,7 +60,7 @@ patterndb::simple::ruleset { 'plop':
         'plop' => 'ploup',
       },
       ruleclass => 'plop'
-    }
+    },
   ],
 }
 
@@ -84,6 +84,6 @@ patterndb::simple::ruleset { 'a':
           }
         },
       ]
-    }
+    },
   ],
 }

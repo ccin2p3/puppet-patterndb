@@ -21,7 +21,7 @@ patterndb::simple::ruleset { 'dhclient':
       ],
       tags      => ['tagv1'],
       ruleclass => 'system'
-    }
+    },
   ],
 }
 
@@ -43,6 +43,6 @@ patterndb::simple::ruleset { 'dhclient_fallback':
       ],
       tags      => ['tagv1'],
       ruleclass => 'system'
-    }
+    },
   ],
 }
