@@ -37,7 +37,7 @@ describe 'patterndb::parser', type: 'define' do
 
         it {
           is_expected.to contain_exec('patterndb::deploy::default').with(
-            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
+            'command' => "pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
           )
         }
       end
@@ -51,7 +51,7 @@ describe 'patterndb::parser', type: 'define' do
 
         it {
           is_expected.to contain_exec('patterndb::deploy::default').with(
-            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml --module=foo --module=bar && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
+            'command' => "pdbtool test /var/cache/syslog-ng/patterndb/default.xml --module=foo --module=bar && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
           )
         }
       end
@@ -63,13 +63,13 @@ describe 'patterndb::parser', type: 'define' do
 
         it {
           is_expected.to contain_exec('patterndb::deploy::default').with(
-            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
+            'command' => "pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
           )
         }
 
         it {
           is_expected.to contain_exec('patterndb::deploy::stage1').with(
-            'command' => "rm -f #{vardir}/patterndb/stage1.xml && pdbtool test /var/cache/syslog-ng/patterndb/stage1.xml  && cp /var/cache/syslog-ng/patterndb/stage1.xml #{vardir}/patterndb/stage1.xml"
+            'command' => "pdbtool test /var/cache/syslog-ng/patterndb/stage1.xml  && cp /var/cache/syslog-ng/patterndb/stage1.xml #{vardir}/patterndb/stage1.xml"
           )
         }
       end
@@ -82,7 +82,7 @@ describe 'patterndb::parser', type: 'define' do
 
         it {
           is_expected.to contain_exec('patterndb::deploy::default').with(
-            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml --module=foo --module=bar && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
+            'command' => "pdbtool test /var/cache/syslog-ng/patterndb/default.xml --module=foo --module=bar && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
           )
         }
       end
@@ -94,7 +94,7 @@ describe 'patterndb::parser', type: 'define' do
 
         it {
           is_expected.to contain_exec('patterndb::deploy::default').with(
-            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
+            'command' => "pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
           )
         }
       end
@@ -116,7 +116,7 @@ describe 'patterndb::parser', type: 'define' do
           }
         end
 
-        it { is_expected.to contain_exec('patterndb::deploy::default').with(command: "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml") }
+        it { is_expected.to contain_exec('patterndb::deploy::default').with(command: "pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml") }
       end
     end
   end

@@ -31,7 +31,7 @@ define patterndb::parser (
   }
 
   $deploy_command = if $test_before_deploy.lest || { $patterndb::test_before_deploy } {
-    "rm -f ${patterndb::var_dir}/patterndb/${name}.xml && pdbtool test ${patterndb::cache_dir}/patterndb/${name}.xml ${modules} && cp ${patterndb::cache_dir}/patterndb/${name}.xml ${patterndb::var_dir}/patterndb/${name}.xml"
+    "pdbtool test ${patterndb::cache_dir}/patterndb/${name}.xml ${modules} && cp ${patterndb::cache_dir}/patterndb/${name}.xml ${patterndb::var_dir}/patterndb/${name}.xml"
   } else {
     "cp ${patterndb::cache_dir}/patterndb/${name}.xml ${patterndb::var_dir}/patterndb/${name}.xml"
   }
