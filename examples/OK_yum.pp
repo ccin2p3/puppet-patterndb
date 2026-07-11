@@ -164,6 +164,6 @@ patterndb::simple::ruleset { 'yum':
           },
         },
       ]
-    }
+    },
   ],
 }

@@ -27,6 +27,6 @@ patterndb::simple::ruleset { 'a':
           },
         },
       ]
-    }
+    },
   ],
 }

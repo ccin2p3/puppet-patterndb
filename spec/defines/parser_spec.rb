@@ -37,7 +37,7 @@ describe 'patterndb::parser', type: 'define' do
 
         it {
           is_expected.to contain_exec('patterndb::deploy::default').with(
-            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
+            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml",
           )
         }
       end
@@ -45,13 +45,13 @@ describe 'patterndb::parser', type: 'define' do
       context 'With optional syslog-ng module' do
         let :params do
           {
-            syslogng_modules: %w[foo bar],
+            syslogng_modules: ['foo', 'bar'],
           }
         end
 
         it {
           is_expected.to contain_exec('patterndb::deploy::default').with(
-            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml --module=foo --module=bar && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
+            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml --module=foo --module=bar && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml",
           )
         }
       end
@@ -63,13 +63,13 @@ describe 'patterndb::parser', type: 'define' do
 
         it {
           is_expected.to contain_exec('patterndb::deploy::default').with(
-            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
+            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml",
           )
         }
 
         it {
           is_expected.to contain_exec('patterndb::deploy::stage1').with(
-            'command' => "rm -f #{vardir}/patterndb/stage1.xml && pdbtool test /var/cache/syslog-ng/patterndb/stage1.xml  && cp /var/cache/syslog-ng/patterndb/stage1.xml #{vardir}/patterndb/stage1.xml"
+            'command' => "rm -f #{vardir}/patterndb/stage1.xml && pdbtool test /var/cache/syslog-ng/patterndb/stage1.xml  && cp /var/cache/syslog-ng/patterndb/stage1.xml #{vardir}/patterndb/stage1.xml",
           )
         }
       end
@@ -77,12 +77,12 @@ describe 'patterndb::parser', type: 'define' do
       context 'With syslog-ng module in class' do
         let :pre_condition do
           ['class { "patterndb": syslogng_modules => [ "foo","bar"] }',
-           'Patterndb::Parser { syslogng_modules => [ "foo","bar"] }']
+           'Patterndb::Parser { syslogng_modules => [ "foo","bar"] }',]
         end
 
         it {
           is_expected.to contain_exec('patterndb::deploy::default').with(
-            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml --module=foo --module=bar && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
+            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml --module=foo --module=bar && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml",
           )
         }
       end
@@ -94,7 +94,7 @@ describe 'patterndb::parser', type: 'define' do
 
         it {
           is_expected.to contain_exec('patterndb::deploy::default').with(
-            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml"
+            'command' => "rm -f #{vardir}/patterndb/default.xml && pdbtool test /var/cache/syslog-ng/patterndb/default.xml  && cp /var/cache/syslog-ng/patterndb/default.xml #{vardir}/patterndb/default.xml",
           )
         }
       end

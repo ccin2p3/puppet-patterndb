@@ -17,7 +17,7 @@ patterndb::simple::ruleset { 'plop':
     },{
       id       => 'plop2',
       patterns => ['hollo'],
-    }
+    },
   ],
 }
 

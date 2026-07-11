@@ -60,6 +60,6 @@ patterndb::simple::ruleset { 'dhclient':
           },
         },
       ],
-    }
+    },
   ],
 }
