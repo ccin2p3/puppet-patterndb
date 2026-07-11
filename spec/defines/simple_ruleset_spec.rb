@@ -59,7 +59,7 @@ describe 'patterndb::simple::ruleset' do
 
         it { is_expected.to contain_patterndb__parser('default') }
 
-        case facts[:osfamily]
+        case facts[:os]['family']
         when 'FreeBSD'
           it { is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with('path' => '/usr/local/etc/patterndb.d/default/myruleset.pdb') }
         else
@@ -84,7 +84,7 @@ describe 'patterndb::simple::ruleset' do
 
         it { is_expected.to contain_patterndb__parser('default') }
 
-        case facts[:osfamily]
+        case facts[:os]['family']
         when 'FreeBSD'
           it { is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with('path' => '/usr/local/etc/patterndb.d/default/myruleset.pdb') }
         else
@@ -146,7 +146,7 @@ describe 'patterndb::simple::ruleset' do
         it { is_expected.not_to contain_patterndb__parser('default') }
         it { is_expected.to contain_patterndb__parser('PARSER') }
 
-        case facts[:osfamily]
+        case facts[:os]['family']
         when 'FreeBSD'
           it { is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with('path' => '/usr/local/etc/patterndb.d/PARSER/myruleset.pdb') }
         else
@@ -320,7 +320,7 @@ describe 'patterndb::simple::ruleset' do
 
         it { is_expected.to contain_patterndb__parser('default') }
 
-        case facts[:osfamily]
+        case facts[:os]['family']
         when 'FreeBSD'
           it { is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with('path' => '/usr/local/etc/patterndb.d/default/123myruleset.pdb') }
         else

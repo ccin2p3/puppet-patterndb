@@ -31,7 +31,7 @@ describe 'patterndb::raw::ruleset' do
           }
         end
 
-        case facts[:osfamily]
+        case facts[:os]['family']
         when 'FreeBSD'
           it { is_expected.to contain_file('/usr/local/etc/patterndb.d/default/myrawruleset.pdb') }
         else
@@ -47,7 +47,7 @@ describe 'patterndb::raw::ruleset' do
           }
         end
 
-        case facts[:osfamily]
+        case facts[:os]['family']
         when 'FreeBSD'
           it { is_expected.to contain_file('/usr/local/etc/patterndb.d/default/myrawruleset').with(ensure: 'directory') }
         else

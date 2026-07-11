@@ -74,7 +74,7 @@ describe 'patterndb::simple::rule' do
           )
         }
 
-        case facts[:osfamily]
+        case facts[:os]['family']
         when 'FreeBSD'
           it {
             is_expected.to contain_concat('patterndb_simple_ruleset-myruleset').with(

@@ -11,7 +11,7 @@ describe 'patterndb', type: 'class' do
 
       it { is_expected.to compile.with_all_deps }
 
-      case facts[:osfamily]
+      case facts[:os]['family']
       when 'Debian'
         it { is_expected.to contain_package('syslog-ng-core') }
       when 'RedHat'
@@ -29,7 +29,7 @@ describe 'patterndb', type: 'class' do
 
       it { is_expected.to compile.with_all_deps }
 
-      case facts[:osfamily]
+      case facts[:os]['family']
       when 'Debian'
         it { is_expected.not_to contain_package('syslog-ng-core') }
       when 'RedHat'
